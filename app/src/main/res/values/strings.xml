@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Foody</string>
+    <string name="email">Email</string>
+    <string name="matkhau">Mật khẩu</string>
+    <string name="dangnhap">Đăng nhập</string>
+    <string name="hoac">Hoặc</string>
+    <string name="quenmk">Quên mật khẩu ?</string>
+    <string name="dangkymoi">Đăng ký mới</string>
+    <string name="nhaplaimatkhau">Nhập lại mật khẩu</string>
+    <string name="dangky">Đăng ký</string>
+    <string name="khoiphucmk">Khôi phục mật khẩu</string>
+    <string name="chuoikhoiphucmk">Bạn vui lòng nhập địa chỉ Email vào khung bên dưới để khôi phục mật khẩu!</string>
+    <string name="btkhoiphucmk">Khôi phục</string>
+    <string name="facebook_app_id">476759459479922</string>
+    <string name="fb_login_protocol_scheme">fb476759459479922</string>
+    <string name="version">Version </string>
+    <string name="loading"> Loading...</string>
+    <string name="tencongty"></string>
+    <string name="odau">Ở đâu</string>
+    <string name="angi">Ăn gì?</string>
+    <string name="moinhat">Mới nhất</string>
+    <string name="danhmuc">Danh mục</string>
+    <string name="Khuvuc">Đà Nẵng city</string>
+    <string name="gantoi">Gần tới</string>
+    <string name="giaohang">Giao hàng</string>
+    <string name="gameandfun">Game and fun</string>
+    <string name="danhgia">Đánh giá</string>
+    <string name="blogs">Blogs</string>
+    <string name="topmember">Top member</string>
+    <string name="datmon">Đặt Món</string>
+    <string name="chamdedoi">Chạm để thay đổi</string>
+    <string name="name">Name</string>
+    <string name="tendangnhap">Tên đăng nhập</string>
+    <string name="bio">Bio</string>
+    <string name="doimk">Thay đổi mật khẩu</string>
+    <string name="gioitinh">Giới tính</string>
+    <string name="ngaysinh">Ngày sinh</string>
+    <string name="sdt">Số điện thoại</string>
+    <string name="taikhoanMXH">Tài khoản Mạng xã hội</string>
+    <string name="chonngaysinh">Chọn ngày sinh</string>
+    <string-array name="gender">
+        <item>Nam</item>
+        <item>Nữ</item>
+        <item>Giới tính khác</item>
+    </string-array>
+</resources>
