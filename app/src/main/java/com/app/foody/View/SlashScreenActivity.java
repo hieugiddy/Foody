@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.foody.R;
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -39,7 +38,7 @@ public class SlashScreenActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else {
-                        Intent intent=new Intent(SlashScreenActivity.this, TrangChuActivity.class);
+                        Intent intent=new Intent(SlashScreenActivity.this, TrangChu.class);
                         startActivity(intent);
                     }
                     finish();

@@ -5,16 +5,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.app.foody.Fragments.AngiFragment;
-import com.app.foody.Fragments.OdauFragment;
+import com.app.foody.Fragments.GantoiFragment;
+import com.app.foody.Fragments.XemgantoiFragment;
+
 
 public class AdapterViewPagerTrangChu extends FragmentStatePagerAdapter {
-    AngiFragment angiFragment;
-    OdauFragment odauFragment;
+    XemgantoiFragment xemgantoiFragment;
+    GantoiFragment gantoiFragment;
     public AdapterViewPagerTrangChu(@NonNull FragmentManager fm) {
         super(fm);
-        angiFragment = new AngiFragment();
-        odauFragment = new OdauFragment();
+        xemgantoiFragment = new XemgantoiFragment();
+        gantoiFragment = new GantoiFragment();
     }
 
     @NonNull
@@ -22,9 +23,9 @@ public class AdapterViewPagerTrangChu extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return odauFragment;
+                return xemgantoiFragment;
             case 1:
-                return angiFragment;
+                return gantoiFragment;
             default:
                 return null;
         }

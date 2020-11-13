@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DatChoView">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="608dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="#FFF"
+                app:layout_collapseMode="parallax">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:background="#00CCFF"
+                    android:layout_marginTop="60dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#cd2027">
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="23dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginLeft="15dp"
+                            android:drawableRight="@android:drawable/ic_media_ff"
+                            android:text="Đặt bàn"
+                            android:textColor="#fff"
+                            android:textSize="16sp">
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:layout_marginTop="7dp"
+                            android:text="Đặt chỗ cho hôm nay 16:15"
+                            android:textColor="#fff"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="14dp">
+                        </TextView>
+
+                    </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_marginLeft="3dp"
+                                android:id="@+id/rcv1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp">
+                            </androidx.recyclerview.widget.RecyclerView>
+                        </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="410dp"
+                android:layout_gravity="bottom"
+                android:background="#FFF"
+                android:orientation="vertical">
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#FFF"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ưu đãi đặc biệt"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="17sp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="10dp">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="150dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="#000"
+                        android:drawableRight="@drawable/arrow_dark_remove2"
+                        android:text="Xem thêm"
+                        android:textSize="16sp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+
+                    android:id="@+id/rcv2"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="106dp"
+                    android:paddingTop="0dp"
+                    android:background="#33FFCC"
+                    android:paddingBottom="0dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv3"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="106dp"
+                    android:paddingTop="0dp"
+                    android:layout_marginTop="7dp"
+                    android:background="#33FFCC"
+                    android:paddingBottom="0dp">
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:background="#99FFFF">
+                </View>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="#FFF"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bộ sưu tập"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="17sp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="10dp">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="182dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="#000"
+                        android:drawableRight="@drawable/arrow_dark_remove2"
+                        android:text="Xem thêm"
+                        android:textSize="16sp">
+                    </TextView>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv4"
+                    android:layout_width="match_parent"
+                    android:layout_height="106dp"
+                    android:paddingTop="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="#33FFCC"
+                    android:paddingBottom="0dp">
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_gravity="top"
+                android:background="#cd2027"
+                android:orientation="horizontal"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                app:layout_collapseMode="pin">
+                <ImageView
+                    android:id="@+id/giaonhanh_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/botron">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#fff"
+                        app:srcCompat="@android:drawable/ic_search_category_default"></ImageView>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:layout_weight="1"
+                        android:textCursorDrawable="@null"
+                        android:background="#fff"
+                        android:text="Nhập gi cần nhập"
+                        android:textColor="#999"
+                        android:textColorLink="#999"
+                        android:textSize="15sp"></EditText>
+
+                    <TextView
+                        android:id="@+id/selection"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:hint="Đà Nẵng"
+                        android:textColor="#999"
+                        android:textColorLink="#999"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:backgroundTint="@color/colorPrimaryDark">
+
+                    </Spinner>
+
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:background="#CCFF33"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".DatChoView"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <TabHost
+            android:id="@+id/tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_collapseMode="parallax"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <!--Tab widget để chọn tab-->
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:dividerPadding="2dip"
+                        android:scrollbarSize="4dp" />
+
+
+
+                <!--FrameLayout  chứa dữ liệu của activity-->
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <!--for tab 1-->
+                    <LinearLayout
+                        android:id="@+id/tab1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFF"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_marginTop="0dp"
+                            android:id="@+id/rcv_tab1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="1dp"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </LinearLayout>
+
+                    <!--for tab 2-->
+                    <LinearLayout
+                        android:id="@+id/tab2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#90ee90"
+                        android:orientation="vertical">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_marginTop="0dp"
+                            android:id="@+id/rcv_tab2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="1dp"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </LinearLayout>
+
+                    <!--for tab 3-->
+                    <LinearLayout
+                        android:id="@+id/tab3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#add8e6"
+                        android:orientation="vertical">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_marginTop="0dp"
+                            android:id="@+id/rcv_tab3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="1dp"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </LinearLayout>
+
+                    <!--for tab 4-->
+                    <LinearLayout
+                        android:id="@+id/tab4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#add8e6"
+                        android:orientation="vertical">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_marginTop="0dp"
+                            android:id="@+id/rcv_tab4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="1dp"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

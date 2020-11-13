@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundTrangChu"
     android:orientation="vertical"
-    tools:context=".View.TrangChuActivity">
+    tools:context=".View.KhamPhaActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -14,16 +14,18 @@
         android:background="@color/colorRed">
 
         <ImageView
+            android:id="@+id/btt_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            app:srcCompat="@drawable/chuf" />
+            app:srcCompat="@drawable/ic_back" />
+
         <RadioGroup
             android:id="@+id/group_odau_angi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="center"
             android:background="@drawable/custom_backgroud_radiobuttonghop_trangchu"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rb_odau"
@@ -34,7 +36,7 @@
                 android:checked="true"
                 android:padding="10dp"
                 android:text="@string/odau"
-                android:textColor="@drawable/changetext_radio_trangchu" />
+                android:textColor="@drawable/changtext_radio_trangchu" />
 
             <RadioButton
                 android:id="@+id/rb_angi"
@@ -44,8 +46,9 @@
                 android:button="@android:color/transparent"
                 android:padding="10dp"
                 android:text="@string/angi"
-                android:textColor="@drawable/changetext_radio_trangchu" />
+                android:textColor="@drawable/changtext_radio_trangchu" />
         </RadioGroup>
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"

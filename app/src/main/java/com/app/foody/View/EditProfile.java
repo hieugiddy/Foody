@@ -11,15 +11,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -45,11 +42,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -62,7 +56,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
-public class Profile extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class EditProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Upload ảnh
     private Uri filePath;
     private final int PICK_IMAGE_REQUEST = 71;
@@ -83,7 +77,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+        setContentView(R.layout.edit_profile);
         mAuth = FirebaseAuth.getInstance();
 
         spnGender = findViewById(R.id.spn_grender);
@@ -118,7 +112,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        Profile.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        EditProfile.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         setListener, year, month, day);
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(new Color().TRANSPARENT));
                 datePickerDialog.show();
@@ -154,9 +148,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         pf_boqua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Profile.this, TrangChuActivity.class);
+                Intent intent = new Intent(EditProfile.this, KhamPhaActivity.class);
                 startActivity(intent);
-                Animatoo.animateShrink(Profile.this);
+                Animatoo.animateShrink(EditProfile.this);
                 finish();
             }
         });
@@ -219,14 +213,14 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                             progressDialog.dismiss();
                             String fileName=taskSnapshot.getMetadata().getName().toString();
                             dataNodeThanhVien.setValue(fileName);
-                            Toast.makeText(Profile.this, "Đã cập nhập", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, "Đã cập nhập", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(Profile.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -323,19 +317,19 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(Profile.this,"Đổi mật khẩu thành công",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(EditProfile.this,"Đổi mật khẩu thành công",Toast.LENGTH_SHORT).show();
                                         mAuth.signOut();
-                                        Intent intent = new Intent(Profile.this, DangNhap.class);
+                                        Intent intent = new Intent(EditProfile.this, DangNhap.class);
                                         startActivity(intent);
                                         finish();
                                     }
                                     else
-                                        Toast.makeText(Profile.this,"Đổi mật khẩu thất bại",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(EditProfile.this,"Đổi mật khẩu thất bại",Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
                 else {
-                    Toast.makeText(Profile.this,"Mật khẩu phải có ít nhất 8 ký tự",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfile.this,"Mật khẩu phải có ít nhất 8 ký tự",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -408,9 +402,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                     DatabaseReference dataNodeThanhVien= FirebaseDatabase.getInstance().getReference().child("thanhviens").child(uid).child("sodt");
                     dataNodeThanhVien.setValue(phone);
                     tvPhoneNumber.setText(phone);
-                    Toast.makeText(Profile.this,"Đổi số điện thoại thành công",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfile.this,"Đổi số điện thoại thành công",Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(Profile.this, "Số điện thoại không chính xác!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfile.this, "Số điện thoại không chính xác!!!", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -448,11 +442,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(Profile.this,"Đổi Email thành công",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfile.this,"Đổi Email thành công",Toast.LENGTH_SHORT).show();
                                     tvEmail.setText(newEmail);
                                 }
                                 else
-                                    Toast.makeText(Profile.this,"Địa chỉ Email không hợp lệ",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditProfile.this,"Địa chỉ Email không hợp lệ",Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -469,7 +463,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         thanhVienNode.child("ngaysinh").setValue(tvDate.getText().toString());
         thanhVienNode.child("gioitinh").setValue(getListCategory().get((int) spnGender.getSelectedItemId()).getName());
 
-        final Dialog dialog= new Dialog(Profile.this,R.style.PauseDialog);
+        final Dialog dialog= new Dialog(EditProfile.this,R.style.PauseDialog);
         dialog.setContentView(R.layout.success_dialog);
 
         MaterialButton btnOK=dialog.findViewById(R.id.ok_dialog);
@@ -480,9 +474,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent=new Intent(Profile.this,TrangChuActivity.class);
+                Intent intent=new Intent(EditProfile.this, KhamPhaActivity.class);
                 startActivity(intent);
-                Animatoo.animateShrink(Profile.this);
+                Animatoo.animateShrink(EditProfile.this);
                 finish();
             }
         });

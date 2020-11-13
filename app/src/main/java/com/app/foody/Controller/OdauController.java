@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.Adapters.AdapterRecyclerOdau;
 import com.app.foody.Controller.Interfaces.OdauInterfaces;
+import com.app.foody.Model.Product;
 import com.app.foody.Model.QuanAnModel;
 import com.app.foody.R;
 
@@ -37,6 +38,11 @@ public class OdauController {
              quanAnModelList.add(quanAnModel);
             adapterRecyclerOdau.notifyDataSetChanged();
             progressBar.setVisibility(View.GONE);
+         }
+
+         @Override
+         public void getDanhSachQuanAnModel(Product quanAnModel) {
+
          }
      };
      quanAnModel.getDanhSachQuanAn(odauInterface);

@@ -5,6 +5,6 @@
         android:color="@color/colorRed"
         />
     <item
-        android:color="@color/colorBlack"
+        android:color="@color/black"
         />
 </selector>

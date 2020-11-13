@@ -1,6 +1,5 @@
 package com.app.foody.View;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -99,7 +98,7 @@ public class DangNhap extends AppCompatActivity implements FirebaseAuth.AuthStat
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         addMemberIntoDatabase(task.getResult().getUser().getUid());
                         Toast.makeText(DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                        Intent iTrangChu=new Intent(DangNhap.this, TrangChuActivity.class);
+                        Intent iTrangChu=new Intent(DangNhap.this, TrangChu.class);
                         startActivity(iTrangChu);
                         finish();
                     }
@@ -168,7 +167,7 @@ public class DangNhap extends AppCompatActivity implements FirebaseAuth.AuthStat
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent iTrangChu=new Intent(DangNhap.this, TrangChuActivity.class);
+                            Intent iTrangChu=new Intent(DangNhap.this, TrangChu.class);
                             startActivity(iTrangChu);
                             finish();
                         } else {
@@ -213,7 +212,7 @@ public class DangNhap extends AppCompatActivity implements FirebaseAuth.AuthStat
                         if (task.isSuccessful()) {
                             addMemberIntoDatabase(task.getResult().getUser().getUid());
                             Toast.makeText(DangNhap.this, "Đăng nhập thành công với "+task.getResult().getUser().getEmail(), Toast.LENGTH_SHORT).show();
-                            Intent iTrangChu=new Intent(DangNhap.this, TrangChuActivity.class);
+                            Intent iTrangChu=new Intent(DangNhap.this, TrangChu.class);
 
                             startActivity(iTrangChu);
                             finish();
@@ -244,7 +243,7 @@ public class DangNhap extends AppCompatActivity implements FirebaseAuth.AuthStat
         FirebaseUser currentUser =mAuth.getCurrentUser();
         if(currentUser!=null) {
             Toast.makeText(DangNhap.this, "Đã đăng nhập với " + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
-            Intent iTrangChu=new Intent(DangNhap.this, TrangChuActivity.class);
+            Intent iTrangChu=new Intent(DangNhap.this, TrangChu.class);
             startActivity(iTrangChu);
             finish();
         }

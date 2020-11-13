@@ -32,16 +32,23 @@
         </activity>
         <activity android:name=".View.QuenMk">
         </activity>
-        <activity android:name=".View.TrangChuActivity">
+        <activity android:name=".View.KhamPhaActivity">
         </activity>
         <activity android:name=".View.ChangePassword"></activity>
+        <activity android:name=".View.TrangChu">
+        </activity>
         <activity android:name=".View.Slide">
 
         </activity>
-        <activity android:name=".View.Profile">
+        <activity android:name=".View.EditProfile">
 
         </activity>
+        <activity android:name=".View.GiaoNhanhView">
 
+        </activity>
+        <activity android:name=".View.DatChoView">
+
+        </activity>
     </application>
 
 </manifest>

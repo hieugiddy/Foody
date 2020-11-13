@@ -44,6 +44,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference mountainsRef = storage.getReference().child("thanhvien/"+ UUID.randomUUID().toString());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
         result.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 

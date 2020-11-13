@@ -2,32 +2,42 @@ package com.app.foody.View;
 
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.app.foody.Adapters.AdapterViewPagerTrangChu;
+import com.app.foody.Adapters.AdapterViewPagerKhamPha;
 import com.app.foody.R;
 
-public class TrangChuActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener,RadioGroup.OnCheckedChangeListener {
+public class KhamPhaActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener,RadioGroup.OnCheckedChangeListener {
 
     ViewPager viewPagerTrangChu;
     RadioButton rbOdau, rbAnGi;
     RadioGroup groupOdauAngi;
+    ImageView btt_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_trangchu);
+        setContentView(R.layout.khampha_activity);
 
         viewPagerTrangChu = (ViewPager)findViewById(R.id.viewpager_trangchu);
         rbOdau = (RadioButton)findViewById(R.id.rb_odau);
         rbAnGi = (RadioButton)findViewById(R.id.rb_angi);
+        btt_back=(ImageView) findViewById(R.id.btt_back);
         groupOdauAngi = (RadioGroup) findViewById(R.id.group_odau_angi);
 
-        AdapterViewPagerTrangChu adapterViewPagerTrangChu = new AdapterViewPagerTrangChu(getSupportFragmentManager());
-        viewPagerTrangChu.setAdapter(adapterViewPagerTrangChu);
+        btt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        AdapterViewPagerKhamPha adapterViewPagerKhamPha = new AdapterViewPagerKhamPha(getSupportFragmentManager());
+        viewPagerTrangChu.setAdapter(adapterViewPagerKhamPha);
         viewPagerTrangChu.addOnPageChangeListener(this);
         groupOdauAngi.setOnCheckedChangeListener(this);
     }

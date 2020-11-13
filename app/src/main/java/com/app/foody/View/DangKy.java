@@ -1,6 +1,5 @@
 package com.app.foody.View;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -77,7 +76,7 @@ public class DangKy extends AppCompatActivity {
                             Log.d("trang thai", "Tạo tài khoản thành công");
 
                             Toast.makeText(DangKy.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-                            Intent iUpdateProfile=new Intent(DangKy.this,Profile.class);
+                            Intent iUpdateProfile=new Intent(DangKy.this, EditProfile.class);
                             startActivity(iUpdateProfile);
                             finish();
                         } else {
