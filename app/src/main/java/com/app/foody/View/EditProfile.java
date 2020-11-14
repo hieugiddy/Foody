@@ -148,7 +148,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         pf_boqua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditProfile.this, KhamPhaActivity.class);
+                Intent intent = new Intent(EditProfile.this, TrangChu.class);
                 startActivity(intent);
                 Animatoo.animateShrink(EditProfile.this);
                 finish();
@@ -474,7 +474,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent=new Intent(EditProfile.this, KhamPhaActivity.class);
+                Intent intent=new Intent(EditProfile.this, TrangChu.class);
                 startActivity(intent);
                 Animatoo.animateShrink(EditProfile.this);
                 finish();
