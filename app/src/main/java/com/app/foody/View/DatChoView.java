@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class DatChoView extends AppCompatActivity {
     private Context context;
     String arr[] = {"Đà Nẵng","TP.HCM","B.Dương","H.Phòng"};
     TextView selection;
+    ImageView datcho_back;
 
 
 
@@ -64,6 +66,7 @@ public class DatChoView extends AppCompatActivity {
         tab();
 
         /////////////////
+        datcho_back=findViewById(R.id.datcho_back);
         selection =(TextView) findViewById(R.id.selection);
         Spinner spin=(Spinner) findViewById(R.id.spinner1);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>
@@ -77,6 +80,12 @@ public class DatChoView extends AppCompatActivity {
         spin.setAdapter(adapter);
         spin.setOnItemSelectedListener(new MyProcessEvent());
         ///////////////
+        datcho_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 

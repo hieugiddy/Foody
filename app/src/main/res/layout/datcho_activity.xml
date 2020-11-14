@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DatChoView">
+    android:layout_height="match_parent">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -191,7 +190,7 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_collapseMode="pin">
                 <ImageView
-                    android:id="@+id/giaonhanh_back"
+                    android:id="@+id/datcho_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_back" />
@@ -215,11 +214,11 @@
                         android:layout_height="30dp"
                         android:layout_marginLeft="7dp"
                         android:layout_weight="1"
-                        android:textCursorDrawable="@null"
                         android:background="#fff"
-                        android:text="Nhập gi cần nhập"
+                        android:hint="Tìm quán ăn, món ăn..."
                         android:textColor="#999"
                         android:textColorLink="#999"
+                        android:textCursorDrawable="@null"
                         android:textSize="15sp"></EditText>
 
                     <TextView
@@ -270,12 +269,14 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <!--Tab widget để chọn tab-->
-                    <TabWidget
-                        android:id="@android:id/tabs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:dividerPadding="2dip"
-                        android:scrollbarSize="4dp" />
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#8BC34A"
+                    android:dividerPadding="2dip"
+                    android:scrollbarSize="4dp"
+                    android:theme="@style/TabStyle" />
 
 
 

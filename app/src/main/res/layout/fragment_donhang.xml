@@ -1,29 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorAccent"
-    tools:context=".Fragments.SavedFragment"
+    tools:context=".Fragments.DonHangFragment"
     android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorRed">
 
+
+
+        <TextView
+            android:id="@+id/txt_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/flag_transparent"
+            android:orientation="horizontal"
+            android:text="Đơn hàng"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"></TextView>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/ic_search_white" />
+    </androidx.appcompat.widget.Toolbar>
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tv1"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout_donhang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:layout_centerHorizontal="true"
-        android:textColor="#000000"
-        android:text="Bạn chưa có Đơn hàng nào" />
-    <ImageView
-        android:layout_below="@+id/tv1"
-        android:layout_marginTop="50dp"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/shipper"/>
+        android:background="@color/colorAccent"
+        app:tabTextColor="#000000"
+        app:tabIndicatorColor="#2196F3"
+        app:tabSelectedTextColor="#2196F3"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_donhang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+</LinearLayout>

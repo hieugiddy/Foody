@@ -34,4 +34,9 @@
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textSize">12sp</item>
     </style>
+    <style name="TabStyle">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:backgroundStacked">@color/black</item>
+    </style>
 </resources>

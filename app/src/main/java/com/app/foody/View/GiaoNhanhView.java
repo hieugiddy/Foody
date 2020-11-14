@@ -48,7 +48,6 @@ public class GiaoNhanhView extends AppCompatActivity implements GiaoNhanhRecycle
     ViewPager viewPager;
     TabLayout tabLayout;
     ArrayList<String> arrayList, arrayList_1;
-    Spinner spinnerChiNhanh;
     ImageView gn_back;
 
 
@@ -83,9 +82,10 @@ public class GiaoNhanhView extends AppCompatActivity implements GiaoNhanhRecycle
         arrayList.add("HCM");
         arrayList.add("Hà Nội");
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_single_choice,arrayList);
-        spinnerChiNhanh.setAdapter(arrayAdapter);
+        Spinner spChiNhanh=(Spinner) findViewById(R.id.spinnerChiNhanh);
+        spChiNhanh.setAdapter(arrayAdapter);
         //Bắt sự kiện cho Spinner, khi chọn phần tử nào thì hiển thị lên Toast
-        spinnerChiNhanh.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spChiNhanh.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //đối số postion là vị trí phần tử trong list Data
@@ -111,7 +111,6 @@ public class GiaoNhanhView extends AppCompatActivity implements GiaoNhanhRecycle
 
     }
     private void innitView(){
-        spinnerChiNhanh = (Spinner)findViewById(R.id.spChiNhanh);
         viewPager = (ViewPager)findViewById(R.id.viewpagerMonAn);
         tabLayout = (TabLayout)findViewById(R.id.tablayoutMonAn);
 
