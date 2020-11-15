@@ -1,4 +1,4 @@
-package com.app.foody.View;
+package com.app.foody.Controller;
 
 import android.content.Context;
 import android.view.View;

@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         gantoi = (RadioButton) v.findViewById(R.id.gantoi);
         group_hienthi = (RadioGroup) v.findViewById(R.id.group_hienthi);
 
-        AdapterViewPagerTrangChu adapterViewPagerTrangChu = new AdapterViewPagerTrangChu(getActivity().getSupportFragmentManager());
+        AdapterViewPagerTrangChu adapterViewPagerTrangChu = new AdapterViewPagerTrangChu(getChildFragmentManager());
         viewPagerTrangChu.setAdapter(adapterViewPagerTrangChu);
         viewPagerTrangChu.addOnPageChangeListener(this);
         group_hienthi.setOnCheckedChangeListener(this);

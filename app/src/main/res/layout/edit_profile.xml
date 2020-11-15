@@ -13,15 +13,6 @@
         android:background="@color/colorRed">
 
         <TextView
-            android:id="@+id/pf_boqua"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/effect_click"
-            android:text="Bỏ qua"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/txt_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

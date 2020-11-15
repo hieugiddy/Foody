@@ -65,7 +65,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
     // kêt thúc upload ảnh
 
-    TextView tvDate, tvPhoneNumber, tvEmail,editMK,pf_boqua,pf_luu;
+    TextView tvDate, tvPhoneNumber, tvEmail,editMK,pf_luu;
     Spinner spnGender;
     private FirebaseAuth mAuth;
     DatePickerDialog.OnDateSetListener setListener;
@@ -82,7 +82,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
         spnGender = findViewById(R.id.spn_grender);
         img_avata=(ImageView) findViewById(R.id.img_avata) ;
-        pf_boqua=findViewById(R.id.pf_boqua);
+
         pf_luu=findViewById(R.id.pf_luu);
         editMK= findViewById(R.id.editMK);
         categoryAdapter = new CategoryAdapter(this, R.layout.item_selected, getListCategory());
@@ -145,15 +145,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
                 DoiMK();
             }
         });
-        pf_boqua.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditProfile.this, TrangChu.class);
-                startActivity(intent);
-                Animatoo.animateShrink(EditProfile.this);
-                finish();
-            }
-        });
+
         pf_luu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

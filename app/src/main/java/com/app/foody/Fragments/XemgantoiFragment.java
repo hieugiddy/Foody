@@ -12,11 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.R;
-import com.app.foody.View.xemgandayController;
+import com.app.foody.Controller.xemgandayController;
 
 
 public class XemgantoiFragment  extends Fragment {
-    com.app.foody.View.xemgandayController xemgandayController;
+    com.app.foody.Controller.xemgandayController xemgandayController;
     RecyclerView recyclerOdau;
     ProgressBar progressBarOdau;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

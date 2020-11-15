@@ -18,14 +18,13 @@
         <ImageView
             android:id="@+id/txtimage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="130dp"
             android:scaleType="fitXY"
             android:src="@drawable/loading_anh" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -37,7 +36,7 @@
                 android:maxLines="1"
                 android:text="Gogi House"
                 android:textColor="#000000"
-                android:textSize="18dp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -47,7 +46,8 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="36 Triệu Quang Phục Quận 3"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
