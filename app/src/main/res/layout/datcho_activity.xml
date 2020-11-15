@@ -86,28 +86,29 @@
                     android:layout_height="40dp"
                     android:background="#FFF"
                     android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ưu đãi đặc biệt"
-                        android:textStyle="bold"
-                        android:textColor="#000"
-                        android:textSize="17sp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="10dp">
-                    </TextView>
 
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="150dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:text="Ưu đãi đặc biệt"
                         android:textColor="#000"
+                        android:textSize="17sp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="2"
                         android:drawableRight="@drawable/arrow_dark_remove2"
                         android:text="Xem thêm"
-                        android:textSize="16sp">
-                    </TextView>
+                        android:textAlignment="textEnd"
+                        android:textColor="#000"
+                        android:textSize="16sp"></TextView>
                 </LinearLayout>
 
 
@@ -136,36 +137,35 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:background="#99FFFF">
-                </View>
+                    android:layout_height="6dp"></View>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:background="#FFF"
                     android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bộ sưu tập"
-                        android:textStyle="bold"
-                        android:textColor="#000"
-                        android:textSize="17sp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="10dp">
-                    </TextView>
 
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="182dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="Bộ sưu tập"
+                        android:textColor="#000"
+                        android:textSize="17sp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="10dp"
-                        android:textColor="#000"
+                        android:layout_weight="2"
                         android:drawableRight="@drawable/arrow_dark_remove2"
                         android:text="Xem thêm"
-                        android:textSize="16sp">
-                    </TextView>
+                        android:textAlignment="textEnd"
+                        android:textColor="#000"
+                        android:textSize="16sp"></TextView>
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
