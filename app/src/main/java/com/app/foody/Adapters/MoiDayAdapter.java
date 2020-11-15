@@ -20,10 +20,10 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
-public class GridViewAdapter extends  RecyclerView.Adapter<GridViewAdapter.ViewHolder> {
+public class MoiDayAdapter extends  RecyclerView.Adapter<MoiDayAdapter.ViewHolder> {
     List<Product>quanAnModelList;
     int resource;
-    public GridViewAdapter(List<Product>quanAnModelList,int resource){
+    public MoiDayAdapter(List<Product>quanAnModelList, int resource){
         this.quanAnModelList=quanAnModelList;
         this.resource=resource;
     }
@@ -66,10 +66,11 @@ public class GridViewAdapter extends  RecyclerView.Adapter<GridViewAdapter.ViewH
             });
         }
         if (quanAnModel.getBinhLuanModelList().size()>0) {
-            BinhLuanModel binhLuanModel = quanAnModel.getBinhLuanModelList().get(0);
-
+            BinhLuanModel binhLuanModel = quanAnModel.getBinhLuanModelList().get(1);
             holder.binhluan.setText(binhLuanModel.getNoidung());
 
+        } else {
+            holder.binhluan.setText("Chưa có bình luận nào");
         }
     }
 

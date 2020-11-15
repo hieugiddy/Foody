@@ -216,6 +216,7 @@
                         android:layout_weight="1"
                         android:background="#fff"
                         android:hint="Tìm quán ăn, món ăn..."
+                        android:inputType="textVisiblePassword"
                         android:textColor="#999"
                         android:textColorLink="#999"
                         android:textCursorDrawable="@null"

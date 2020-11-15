@@ -1,14 +1,21 @@
 package com.app.foody.View;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.app.foody.Adapters.ViewPageAdapterTrangChu;
+import com.app.foody.Controller.NotificationHelper;
 import com.app.foody.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -16,15 +23,36 @@ public class TrangChu extends AppCompatActivity {
 
     private BottomNavigationView mNavigationView;
     private ViewPager mViewPager;
+    NotificationHelper notificationHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trangchu);
+
         mNavigationView = findViewById(R.id.bottom_nav);
         mViewPager = findViewById(R.id.view_pager);
 
         setUpViewPager();
-
+        //tạo 1 thông báo đơn giản cho android 5+ -> 8-
+       NotificationManager notificationManager=(NotificationManager) getApplicationContext().getSystemService(
+                Context.NOTIFICATION_SERVICE
+        );
+        Uri linkNhac= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder builder=new NotificationCompat.Builder(
+                TrangChu.this,getString(R.string.app_name)
+        );
+        builder.setContentTitle("Miễn phí vận chuyển với đơn hàng trên 50k");
+        builder.setContentText("Với đơn hàng trên 50k trong nội thành Thành phố Đà Nẵng, bạn sẽ được miễn phí vận chuyển");
+        builder.setSmallIcon(R.drawable.icon_foody);
+        builder.setSound(linkNhac);
+        builder.setAutoCancel(true);
+        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+        notificationManager.notify(1,builder.build());
+        //kết thúc phần tạo thông báo
+        /*tạo 1 thông báo đơn giản cho android 8+
+        notificationHelper=new NotificationHelper(this);
+        notificationHelper.notify("Miễn phí vận chuyển với đơn hàng trên 50k","Với đơn hàng trên 50k trong nội thành Thành phố Đà Nẵng, bạn sẽ được miễn phí vận chuyển");
+        //kết thúc phần tạo thông báo */
         mNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

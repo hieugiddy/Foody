@@ -90,6 +90,7 @@ public class Product {
                         binhLuanModel.setMabinhluan(valuebinhluan.getKey());
                         ThanhVienModel thanhVienModel = dataSnapshot.child("thanhviens").child(binhLuanModel.getMauser()).getValue(ThanhVienModel.class);
                         binhLuanModel.setThanhVienModel(thanhVienModel);
+                        binhLuanModels.add(binhLuanModel);
                     }
                     quanAnModel.setBinhLuanModelList(binhLuanModels);
                     odauInterface.getDanhSachQuanAnModel(quanAnModel);

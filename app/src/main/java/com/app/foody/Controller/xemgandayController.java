@@ -2,15 +2,13 @@ package com.app.foody.Controller;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.app.foody.Adapters.GridViewAdapter;
+import com.app.foody.Adapters.MoiDayAdapter;
 import com.app.foody.Controller.Interfaces.OdauInterfaces;
 import com.app.foody.Model.Product;
 import com.app.foody.Model.QuanAnModel;
@@ -22,7 +20,7 @@ import java.util.List;
 public class xemgandayController {
     Product quanAnModel;
     Context context;
-    GridViewAdapter gridViewAdapter;
+    MoiDayAdapter gridViewAdapter;
     public xemgandayController(Context context) {
         this.context=context;
         quanAnModel=new Product();
@@ -33,7 +31,7 @@ public class xemgandayController {
 
        RecyclerView.LayoutManager layoutManager1=new GridLayoutManager(context,2);
         recyclerOdau.setLayoutManager(layoutManager1);
-        gridViewAdapter =new GridViewAdapter(quanAnModelList, R.layout.custom_layout_recyclerview_xemganday);
+        gridViewAdapter =new MoiDayAdapter(quanAnModelList, R.layout.custom_layout_recyclerview_xemganday);
         recyclerOdau.setAdapter(gridViewAdapter);
         //
      OdauInterfaces odauInterface=new OdauInterfaces() {

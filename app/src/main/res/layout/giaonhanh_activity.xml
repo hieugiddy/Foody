@@ -179,6 +179,7 @@
                         android:layout_marginLeft="7dp"
                         android:layout_weight="1"
                         android:background="#fff"
+                        android:inputType="textVisiblePassword"
                         android:hint="Tìm quán ăn, món ăn..."
                         android:textColor="#999"
                         android:textColorLink="#999"
