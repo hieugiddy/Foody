@@ -1,8 +1,10 @@
-package com.app.foody.View;
+package com.app.foody.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -10,7 +12,9 @@ import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +31,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatChoView extends AppCompatActivity {
+public class DatChoFragment extends Fragment {
     private AppBarLayout appBarLayout;
     private CollapsingToolbarLayout collapsingToolbarLayout;
 
@@ -53,25 +57,34 @@ public class DatChoView extends AppCompatActivity {
     String arr[] = {"Đà Nẵng","TP.HCM","B.Dương","H.Phòng"};
     TextView selection;
     ImageView datcho_back;
-
-
-
-
+    TabHost tabhost;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.datcho_activity);
-        initUi();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v=inflater.inflate(R.layout.datcho_activity, container, false);
+        appBarLayout = v.findViewById(R.id.appBarLayout);
+        collapsingToolbarLayout = v.findViewById(R.id.collapsingToolbarLayout);
+
+
+        rcvTab1 = v.findViewById(R.id.rcv_tab1);
+        rcvTab2 = v.findViewById(R.id.rcv_tab2);
+        rcvTab3 = v.findViewById(R.id.rcv_tab3);
+        rcvTab4 = v.findViewById(R.id.rcv_tab4);
+        rcv1 = v.findViewById(R.id.rcv1);
+        rcv2 = v.findViewById(R.id.rcv2);
+        rcv3 = v.findViewById(R.id.rcv3);
+        rcv4 = v.findViewById(R.id.rcv4);
+        tabhost = (TabHost) v.findViewById(R.id.tabhost);
         initRecyclerView();
         tab();
 
         /////////////////
-        datcho_back=findViewById(R.id.datcho_back);
-        selection =(TextView) findViewById(R.id.selection);
-        Spinner spin=(Spinner) findViewById(R.id.spinner1);
+        datcho_back=v.findViewById(R.id.datcho_back);
+        selection =(TextView) v.findViewById(R.id.selection);
+        Spinner spin=(Spinner) v.findViewById(R.id.spinner1);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>
                 (
-                        this,
+                        getActivity(),
                         android.R.layout.simple_spinner_item,
                         arr
                 );
@@ -83,13 +96,11 @@ public class DatChoView extends AppCompatActivity {
         datcho_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                getActivity().onBackPressed();
             }
         });
-
+        return v;
     }
-
-    ////================
     private class MyProcessEvent implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> arg0,
@@ -105,21 +116,7 @@ public class DatChoView extends AppCompatActivity {
     }
     //================
 
-    private void initUi(){
-        appBarLayout = findViewById(R.id.appBarLayout);
-        collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
 
-
-        rcvTab1 = findViewById(R.id.rcv_tab1);
-        rcvTab2 = findViewById(R.id.rcv_tab2);
-        rcvTab3 = findViewById(R.id.rcv_tab3);
-        rcvTab4 = findViewById(R.id.rcv_tab4);
-        rcv1 = findViewById(R.id.rcv1);
-        rcv2 = findViewById(R.id.rcv2);
-        rcv3 = findViewById(R.id.rcv3);
-        rcv4 = findViewById(R.id.rcv4);
-
-    }
 
     private void initRecyclerView(){
         rcvTab1.setHasFixedSize(true);
@@ -131,10 +128,10 @@ public class DatChoView extends AppCompatActivity {
         rcv3.setHasFixedSize(true);
         rcv4.setHasFixedSize(true);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        LinearLayoutManager linearLayoutManager6 = new LinearLayoutManager(this);
-        LinearLayoutManager linearLayoutManager7 = new LinearLayoutManager(this);
-        LinearLayoutManager linearLayoutManager8 = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager6 = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager7 = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager8 = new LinearLayoutManager(getActivity());
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
         LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
         LinearLayoutManager linearLayoutManager4 = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
@@ -290,7 +287,6 @@ public class DatChoView extends AppCompatActivity {
     public void tab()
     {
         //bắt đầu tabhost
-        TabHost tabhost = (TabHost) findViewById(R.id.tabhost);
         // setting up the tab host
         tabhost.setup();
 
@@ -319,29 +315,4 @@ public class DatChoView extends AppCompatActivity {
         tabhost.addTab(spec);
     }
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,5 @@
 package com.app.foody.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +19,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.app.foody.Adapters.AdapterViewPagerTrangChu;
 import com.app.foody.R;
-import com.app.foody.View.DatChoView;
-import com.app.foody.View.GiaoNhanhView;
-import com.app.foody.View.KhamPhaActivity;
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
@@ -36,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements ViewPager.OnPageChangeListener, RadioGroup.OnCheckedChangeListener {
+public class HomeFragment extends Fragment implements ViewPager.OnPageChangeListener, RadioGroup.OnCheckedChangeListener,View.OnClickListener {
     Spinner spinnerDanhSach;
     ViewPager viewPagerTrangChu;
     RadioButton xemganday, gantoi;
@@ -44,6 +39,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     ArrayList<String> arrayList;
     TextView selection;
     CardView khamPha,giaoHang,datCho;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -98,30 +94,9 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
             }
         }); //
 
-        khamPha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), KhamPhaActivity.class);
-                startActivity(intent);
-                Animatoo.animateShrink(getActivity());
-            }
-        });
-        giaoHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), GiaoNhanhView.class);
-                startActivity(intent);
-                Animatoo.animateShrink(getActivity());
-            }
-        });
-        datCho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), DatChoView.class);
-                startActivity(intent);
-                Animatoo.animateShrink(getActivity());
-            }
-        });
+        khamPha.setOnClickListener(this);
+        giaoHang.setOnClickListener(this);
+        datCho.setOnClickListener(this);
         //xem gan đây, gần tôi
         viewPagerTrangChu = (ViewPager) v.findViewById(R.id.viewpager_trangchu);
         xemganday = (RadioButton) v.findViewById(R.id.xemganday);
@@ -159,4 +134,31 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
                 break;
         }
     }
+// sự kiện click mở Frament khác trong Frament
+    @Override
+    public void onClick(View v) {
+        Fragment fragment = null;
+        switch (v.getId()) {
+            case R.id.khampha:
+                fragment = new KhamPhaFragment();
+                replaceFragment(fragment);
+                break;
+
+           case R.id.giaohang:
+                fragment = new GiaoHangFragment();
+                replaceFragment(fragment);
+                break;
+            case R.id.datcho:
+                fragment = new DatChoFragment();
+                replaceFragment(fragment);
+                break;
+        }
+    }
+    public void replaceFragment(Fragment someFragment) {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.layout_chinh, someFragment, "findThisFragment")
+                .addToBackStack(null)
+                .commit();
+    }
+    // kết thúc click frament
 }

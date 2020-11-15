@@ -1,5 +1,6 @@
 package com.app.foody.View;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -8,13 +9,15 @@ import android.os.Handler;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.app.foody.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SlashScreenActivity extends AppCompatActivity {
-
+    private NotificationManagerCompat notificationManagerCompat;
     TextView txtPhienBan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +25,6 @@ public class SlashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.layout_slashscreen);
 
         txtPhienBan = findViewById(R.id.txtPhienBan);
-
         try{
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(),0);
             txtPhienBan.setText(getString(R.string.version) + " " + packageInfo.versionName);
