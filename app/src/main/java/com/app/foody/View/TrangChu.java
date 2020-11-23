@@ -33,6 +33,7 @@ public class TrangChu extends AppCompatActivity {
         mViewPager = findViewById(R.id.view_pager);
 
         setUpViewPager();
+        /*
         //tạo 1 thông báo đơn giản cho android 5+ -> 8-
        NotificationManager notificationManager=(NotificationManager) getApplicationContext().getSystemService(
                 Context.NOTIFICATION_SERVICE
@@ -49,7 +50,7 @@ public class TrangChu extends AppCompatActivity {
         builder.setPriority(NotificationCompat.PRIORITY_HIGH);
         notificationManager.notify(1,builder.build());
         //kết thúc phần tạo thông báo
-        /*tạo 1 thông báo đơn giản cho android 8+
+        tạo 1 thông báo đơn giản cho android 8+
         notificationHelper=new NotificationHelper(this);
         notificationHelper.notify("Miễn phí vận chuyển với đơn hàng trên 50k","Với đơn hàng trên 50k trong nội thành Thành phố Đà Nẵng, bạn sẽ được miễn phí vận chuyển");
         //kết thúc phần tạo thông báo */

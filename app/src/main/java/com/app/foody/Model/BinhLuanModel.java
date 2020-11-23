@@ -7,7 +7,7 @@ public class BinhLuanModel {
     long luotthich;
     ThanhVienModel thanhVienModel;
     String noidung,tieude,mauser;
-List<String> hinhanhBinhLuanlist;
+    List<String> hinhanhBinhLuanlist;
 
     public List<String> getHinhanhBinhLuanlist() {
         return hinhanhBinhLuanlist;

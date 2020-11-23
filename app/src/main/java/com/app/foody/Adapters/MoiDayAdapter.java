@@ -35,7 +35,7 @@ public class MoiDayAdapter extends  RecyclerView.Adapter<MoiDayAdapter.ViewHolde
             super(itemView);
             txtimage=itemView.findViewById(R.id.txtimage);
             tenquanan=itemView.findViewById(R.id.tenquanan);
-            binhluan=itemView.findViewById(R.id.binhluan);
+            binhluan=itemView.findViewById(R.id.bl);
 
 
         }

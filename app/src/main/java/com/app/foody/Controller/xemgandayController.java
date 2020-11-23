@@ -33,6 +33,7 @@ public class xemgandayController {
         recyclerOdau.setLayoutManager(layoutManager1);
         gridViewAdapter =new MoiDayAdapter(quanAnModelList, R.layout.custom_layout_recyclerview_xemganday);
         recyclerOdau.setAdapter(gridViewAdapter);
+
         //
      OdauInterfaces odauInterface=new OdauInterfaces() {
          @Override

@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.R;
-import com.app.foody.View.OnboardingItem;
+import com.app.foody.Model.OnboardingItem;
 
 import java.util.List;
 

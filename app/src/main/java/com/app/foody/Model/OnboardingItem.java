@@ -1,4 +1,4 @@
-package com.app.foody.View;
+package com.app.foody.Model;
 
 public class OnboardingItem {
     private int image;
