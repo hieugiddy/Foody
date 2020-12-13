@@ -38,6 +38,7 @@
     <string name="sdt">Số điện thoại</string>
     <string name="taikhoanMXH">Tài khoản Mạng xã hội</string>
     <string name="chonngaysinh">Chọn ngày sinh</string>
+    <string name="api_key" translatable="false">AIzaSyArDfi6xqaR3tbGkJov0I08y4eYV9KnrSI</string>
     <string-array name="gender">
         <item>Nam</item>
         <item>Nữ</item>

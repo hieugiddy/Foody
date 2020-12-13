@@ -20,10 +20,10 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
-public class MoiDayAdapter extends  RecyclerView.Adapter<MoiDayAdapter.ViewHolder> {
+public class XemGanDayAdapter extends  RecyclerView.Adapter<XemGanDayAdapter.ViewHolder> {
     List<Product>quanAnModelList;
     int resource;
-    public MoiDayAdapter(List<Product>quanAnModelList, int resource){
+    public XemGanDayAdapter(List<Product>quanAnModelList, int resource){
         this.quanAnModelList=quanAnModelList;
         this.resource=resource;
     }
@@ -60,8 +60,8 @@ public class MoiDayAdapter extends  RecyclerView.Adapter<MoiDayAdapter.ViewHolde
             storageHinhAnh.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                 @Override
                 public void onSuccess(byte[] bytes) {
-                    Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                    holder.txtimage.setImageBitmap(bitmap);
+            Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+            holder.txtimage.setImageBitmap(bitmap);
                 }
             });
         }

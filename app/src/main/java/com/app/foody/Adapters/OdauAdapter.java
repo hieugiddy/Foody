@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.foody.Model.ChiNhanhQuanAn;
+import com.app.foody.View.ChiTietQuanAn;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -25,16 +27,17 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AdapterRecyclerOdau extends RecyclerView.Adapter<AdapterRecyclerOdau.ViewHolder> {
+public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
     List<QuanAnModel>quanAnModelList;
     int resource;
-    public AdapterRecyclerOdau(List<QuanAnModel>quanAnModelList,int resource){
+    public OdauAdapter(List<QuanAnModel>quanAnModelList, int resource){
               this.quanAnModelList=quanAnModelList;
             this.resource=resource;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenQuanAnOdau,txtTieuDeBinhLuan,txtTieuDeBinhLuan2,txtNoiDungBinhLuan,
-                txtNoiDungBinhLuan2,txtchamdiembinhluan,txtchamdiembinhluan2,txttongbinhluan,txtTonghinhbinhluan,txtDiemTrungBinhQuanAn;
+                txtNoiDungBinhLuan2,txtchamdiembinhluan,txtchamdiembinhluan2,txttongbinhluan,txtTonghinhbinhluan,txtDiemTrungBinhQuanAn,
+                txtDiaChi,txtKhoangCach;
         Button btnDatMonOdau;
         ImageView imageViewHinhQuanAnOdau;
         CircleImageView cicleImageUser,cicleImageUser2;
@@ -58,10 +61,12 @@ public class AdapterRecyclerOdau extends RecyclerView.Adapter<AdapterRecyclerOda
             txttongbinhluan=itemView.findViewById(R.id.txttongbinhluan);
             txtTonghinhbinhluan=itemView.findViewById(R.id.txtTonghinhbinhluan);
             txtDiemTrungBinhQuanAn=itemView.findViewById(R.id.txtDiemTrungBinhQuanAn);
+            txtDiaChi=itemView.findViewById(R.id.txtDiaChi);
+            txtKhoangCach=itemView.findViewById(R.id.txtKhoangCach);
         }  }
     @NonNull
     @Override
-    public AdapterRecyclerOdau.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OdauAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(resource,parent,false);
         ViewHolder viewHolder=new ViewHolder(view);
 
@@ -69,21 +74,20 @@ public class AdapterRecyclerOdau extends RecyclerView.Adapter<AdapterRecyclerOda
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AdapterRecyclerOdau.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final OdauAdapter.ViewHolder holder, int position) {
         QuanAnModel quanAnModel=quanAnModelList.get(position);
         holder.txtTenQuanAnOdau.setText(quanAnModel.getTenquanan());
             if (quanAnModel.isGiaohang()){
                 holder.btnDatMonOdau.setVisibility(View.VISIBLE);
             }
             if (quanAnModel.getHinhanhquanan().size()>0){
-                Log.d("Anh",quanAnModel.getHinhanhquanan().get(0));
                 StorageReference storageHinhAnh  = FirebaseStorage.getInstance().getReference().child("hinhquanan").child(quanAnModel.getHinhanhquanan().get(0));
-           final long ONE_MEGABYTE=1024*1024;
-           storageHinhAnh.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                final long ONE_MEGABYTE=1024*1024;
+                storageHinhAnh.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                @Override
                public void onSuccess(byte[] bytes) {
-                   Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                   holder.imageViewHinhQuanAnOdau.setImageBitmap(bitmap);
+                Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                holder.imageViewHinhQuanAnOdau.setImageBitmap(bitmap);
                }
            });
             }
@@ -119,6 +123,17 @@ public class AdapterRecyclerOdau extends RecyclerView.Adapter<AdapterRecyclerOda
         else {
             holder.containerBinhLuan.setVisibility(View.GONE);
             holder.containerBinhLuan2.setVisibility(View.GONE);
+        }
+
+        if(quanAnModel.getChiNhanhQuanAnList().size()>0){
+            ChiNhanhQuanAn chiNhanhQuanAn=quanAnModel.getChiNhanhQuanAnList().get(0);
+            for(ChiNhanhQuanAn i: quanAnModel.getChiNhanhQuanAnList()){
+                if(chiNhanhQuanAn.getKhoangCach() > i.getKhoangCach()){
+                    chiNhanhQuanAn=i;
+                }
+            }
+            holder.txtDiaChi.setText(chiNhanhQuanAn.getDiaChi());
+            holder.txtKhoangCach.setText(String.format("%.2f",chiNhanhQuanAn.getKhoangCach())+"km");
         }
     }
     private  void setHinhAnhBinhLuan(final CircleImageView circleImageView , String linkhinh){

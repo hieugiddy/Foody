@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.app.foody.R;
 
 
-public class GantoiFragment extends Fragment {
+public class XemGanToiFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_gantoi,container,false);
         return view;

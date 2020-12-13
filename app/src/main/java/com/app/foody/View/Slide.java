@@ -2,6 +2,7 @@ package com.app.foody.View;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -31,7 +32,8 @@ public class Slide extends AppCompatActivity {
     private OnboardingAdapter onboardingAdapter;
     private LinearLayout layoutOnboardingIndicators;
     private Button buttonOnboardingAction;
-    private FusedLocationProviderClient fusedLocationClient; //Location
+    
+
     public static final int REQUEST_PERMISSION_LOCATION = 1;
 
     @Override
@@ -44,19 +46,7 @@ public class Slide extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_PERMISSION_LOCATION);
         }
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            Toast.makeText(Slide.this, "Kinh độ:" + location.getLatitude(), Toast.LENGTH_SHORT).show();
-                            Toast.makeText(Slide.this, "Vĩ độ:" + location.getLongitude(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    }
-                });
 
 
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
@@ -82,7 +72,7 @@ public class Slide extends AppCompatActivity {
                 if(onboardingViewPager.getCurrentItem() +1 < onboardingAdapter.getItemCount()){
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
                 } else {
-                    startActivity(new Intent(getApplicationContext(), DangNhap.class));
+                    startActivity(new Intent(getApplicationContext(), TrangChu.class));
                     finish();
                 }
             }

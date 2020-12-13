@@ -20,8 +20,8 @@ import com.app.foody.Controller.xemgandayController;
 import com.app.foody.View.ChiTietQuanAn;
 
 
-public class XemgantoiFragment  extends Fragment  {
-    com.app.foody.Controller.xemgandayController xemgandayController;
+public class XemGanDayFragment  extends Fragment  {
+    xemgandayController xemgandayController;
     RecyclerView recyclerOdau;
     ProgressBar progressBarOdau;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

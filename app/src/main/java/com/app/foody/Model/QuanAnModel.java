@@ -1,9 +1,11 @@
 package com.app.foody.Model;
 
+import android.location.Location;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +22,15 @@ public class QuanAnModel {
     List<String> tienich;
     List<String> hinhanhquanan;
     List<BinhLuanModel> binhLuanModelList;
+    List<ChiNhanhQuanAn> chiNhanhQuanAnList;
+
+    public List<ChiNhanhQuanAn> getChiNhanhQuanAnList() {
+        return chiNhanhQuanAnList;
+    }
+
+    public void setChiNhanhQuanAnList(List<ChiNhanhQuanAn> chiNhanhQuanAnList) {
+        this.chiNhanhQuanAnList = chiNhanhQuanAnList;
+    }
     long luotthich;
    DatabaseReference nodeRoot;
 
@@ -115,7 +126,7 @@ public class QuanAnModel {
         this.luotthich = luotthich;
     }
 
-public void getDanhSachQuanAn(final OdauInterfaces odauInterface) {
+public void getDanhSachQuanAn(final OdauInterfaces odauInterface, final Location viTriHienTai) {
        ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -126,7 +137,7 @@ public void getDanhSachQuanAn(final OdauInterfaces odauInterface) {
                 quanAnModel.setMaquanan(i.getKey());
                 // lấy danh sách hình ảnh của một quán ăn theo mã
                 List<String> hinhanhlist=new ArrayList<>();
-                for (DataSnapshot a: dataSnapshot.child("hinhanhquanans").child(i.getKey()).getChildren()){
+                for (DataSnapshot a:dataSnapshot.child("hinhanhquanans").child(i.getKey()).getChildren()){
                     hinhanhlist.add(a.getValue(String.class));
                 }
                 quanAnModel.setHinhanhquanan(hinhanhlist);
@@ -149,7 +160,20 @@ public void getDanhSachQuanAn(final OdauInterfaces odauInterface) {
                     binhLuanModels.add(binhLuanModel);
                 }
                 quanAnModel.setBinhLuanModelList(binhLuanModels);
-                    //
+                //chi nhánh quán ăn
+                DataSnapshot dataSnapshotChiNhanhQuanAn=dataSnapshot.child("chinhanhquanans").child(quanAnModel.getMaquanan());
+                List<ChiNhanhQuanAn> chiNhanhQuanAns=new ArrayList<>();
+                for(DataSnapshot valueChiNhanhQuanAn: dataSnapshotChiNhanhQuanAn.getChildren()){
+                    ChiNhanhQuanAn chiNhanhQuanAn=valueChiNhanhQuanAn.getValue(ChiNhanhQuanAn.class);
+                    Location viTriQuanAn=new Location("");
+                    viTriQuanAn.setLatitude(chiNhanhQuanAn.getLatitude());
+                    viTriQuanAn.setLongitude(chiNhanhQuanAn.getLongitude());
+                    Float khoangCach=viTriHienTai.distanceTo(viTriQuanAn);
+                    chiNhanhQuanAn.setKhoangCach(khoangCach/1000);
+                    Log.d("Khoảng cách",chiNhanhQuanAn.getKhoangCach()+"km - "+chiNhanhQuanAn.getDiaChi());
+                    chiNhanhQuanAns.add(chiNhanhQuanAn);
+                }
+                quanAnModel.setChiNhanhQuanAnList(chiNhanhQuanAns);
                 odauInterface.getDanhSachQuanAnModel(quanAnModel);
             }
 

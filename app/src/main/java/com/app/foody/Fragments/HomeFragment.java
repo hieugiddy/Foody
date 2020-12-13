@@ -1,6 +1,14 @@
 package com.app.foody.Fragments;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +22,23 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.app.foody.Adapters.AdapterViewPagerTrangChu;
 import com.app.foody.R;
+import com.app.foody.View.SlashScreenActivity;
+import com.app.foody.View.Slide;
+import com.app.foody.View.TrangChu;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,15 +56,35 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     ArrayList<String> arrayList;
     TextView selection;
     CardView khamPha,giaoHang,datCho;
-
+    SharedPreferences sharedPreferences;
+    private FusedLocationProviderClient fusedLocationClient; //Location
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_home, container, false);
-
+        sharedPreferences=getActivity().getSharedPreferences("toado", Context.MODE_PRIVATE);
         khamPha=v.findViewById(R.id.khampha);
         giaoHang=v.findViewById(R.id.giaohang);
         datCho=v.findViewById(R.id.datcho);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        int checkPermissionLoaction = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION);
+        if (checkPermissionLoaction == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                SharedPreferences.Editor editor=sharedPreferences.edit();
+                                editor.putString("latitude",Double.toString(location.getLatitude()));
+                                editor.putString("longitude",Double.toString(location.getLongitude()));
+                                editor.commit();
+                            }
+                        }
+                    });
+        }
+
         //slide banner
         final ImageSlider imageSlider = v.findViewById(R.id.slide); // init imageSlider
         final List<SlideModel> imageList = new ArrayList<>(); // Create image list
