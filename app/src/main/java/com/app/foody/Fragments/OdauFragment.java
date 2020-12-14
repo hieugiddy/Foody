@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,11 +27,13 @@ public class OdauFragment extends Fragment {
     RecyclerView recyclerOdau;
     ProgressBar progressBarOdau;
     SharedPreferences sharedPreferences;
+    NestedScrollView nestedScrollViewOdau;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_fragment_odau,container,false);
         recyclerOdau=   (RecyclerView)view.findViewById(R.id.recyclerOdau);
+        nestedScrollViewOdau=view.findViewById(R.id.nestedScrollViewOdau);
         progressBarOdau=view.findViewById(R.id.progressBarOdau);
         return view;
 
@@ -46,6 +49,6 @@ public class OdauFragment extends Fragment {
         viTriHienTai.setLatitude(latitude);
         viTriHienTai.setLongitude(longitude);
          odauController=new OdauController(getContext());
-         odauController.getDanhSachQuanAnController(recyclerOdau,progressBarOdau,viTriHienTai);
+         odauController.getDanhSachQuanAnController(nestedScrollViewOdau,recyclerOdau,progressBarOdau,viTriHienTai);
     }
 }

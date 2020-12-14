@@ -81,15 +81,7 @@ public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
                 holder.btnDatMonOdau.setVisibility(View.VISIBLE);
             }
             if (quanAnModel.getHinhanhquanan().size()>0){
-                StorageReference storageHinhAnh  = FirebaseStorage.getInstance().getReference().child("hinhquanan").child(quanAnModel.getHinhanhquanan().get(0));
-                final long ONE_MEGABYTE=1024*1024;
-                storageHinhAnh.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-               @Override
-               public void onSuccess(byte[] bytes) {
-                Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                holder.imageViewHinhQuanAnOdau.setImageBitmap(bitmap);
-               }
-           });
+                holder.imageViewHinhQuanAnOdau.setImageBitmap(quanAnModel.getBitmaps().get(0));
             }
         //lấy danh sách bình luận của quán ăn
         if (quanAnModel.getBinhLuanModelList().size()>0){
