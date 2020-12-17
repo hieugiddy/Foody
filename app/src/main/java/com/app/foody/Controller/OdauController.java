@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -42,25 +43,9 @@ public class OdauController {
          final OdauInterfaces odauInterface=new OdauInterfaces() {
              @Override
              public void getDanhSachQuanAnModel(final QuanAnModel quanAnModel) {
-                 final List<Bitmap> bitmaps=new ArrayList<>();
-                 for(String linkhinh:quanAnModel.getHinhanhquanan()){
-                     StorageReference storageHinhAnh  = FirebaseStorage.getInstance().getReference().child("hinhquanan").child(linkhinh);
-                     final long ONE_MEGABYTE=1024*1024;
-                     storageHinhAnh.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                         @Override
-                         public void onSuccess(byte[] bytes) {
-                             Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                             bitmaps.add(bitmap);
-                             if(bitmaps.size()==quanAnModel.getHinhanhquanan().size()){
-                                 quanAnModel.setBitmaps(bitmaps);
-                                 quanAnModelList.add(quanAnModel);
-                                 adapterRecyclerOdau.notifyDataSetChanged();
-                                 progressBar.setVisibility(View.GONE);
-                             }
-                         }
-                     });
-                 }
-
+                 quanAnModelList.add(quanAnModel);
+                 adapterRecyclerOdau.notifyDataSetChanged();
+                 progressBar.setVisibility(View.GONE);
              }
 
              @Override

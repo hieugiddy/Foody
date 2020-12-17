@@ -1,18 +1,22 @@
 package com.app.foody.Model;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.app.foody.Controller.Interfaces.OdauInterfaces;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -176,7 +180,7 @@ public void LayDanhSachQuanAn(DataSnapshot dataSnapshot,final OdauInterfaces oda
             continue;
         }
         k++;
-        QuanAnModel quanAnModel=i.getValue(QuanAnModel.class);
+        final QuanAnModel quanAnModel=i.getValue(QuanAnModel.class);
         quanAnModel.setMaquanan(i.getKey());
         // lấy danh sách hình ảnh của một quán ăn theo mã
         List<String> hinhanhlist=new ArrayList<>();
@@ -185,6 +189,7 @@ public void LayDanhSachQuanAn(DataSnapshot dataSnapshot,final OdauInterfaces oda
         }
         quanAnModel.setHinhanhquanan(hinhanhlist);
         //
+
         //lấy danh sách bình luận của quán ăn
         DataSnapshot dataSnapshotBinhLuan= dataSnapshot.child("binhluans").child(quanAnModel.getMaquanan());
         List<BinhLuanModel> binhLuanModels=new ArrayList<>();
@@ -216,7 +221,20 @@ public void LayDanhSachQuanAn(DataSnapshot dataSnapshot,final OdauInterfaces oda
             chiNhanhQuanAns.add(chiNhanhQuanAn);
         }
         quanAnModel.setChiNhanhQuanAnList(chiNhanhQuanAns);
-        odauInterface.getDanhSachQuanAnModel(quanAnModel);
+
+        // tải hình
+        final List<Bitmap> bitmaps=new ArrayList<>();
+        StorageReference storageHinhAnh  = FirebaseStorage.getInstance().getReference().child("hinhquanan").child(quanAnModel.getHinhanhquanan().get(0));
+        final long ONE_MEGABYTE=1024*1024;
+        storageHinhAnh.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                bitmaps.add(bitmap);
+                quanAnModel.setBitmaps(bitmaps);
+                odauInterface.getDanhSachQuanAnModel(quanAnModel);
+            }
+        });
     }
 }
 
