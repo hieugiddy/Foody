@@ -28,7 +28,7 @@ public class QuanAnModel implements Parcelable {
     List<BinhLuanModel> binhLuanModelList;
     List<ChiNhanhQuanAn> chiNhanhQuanAnList;
     List<Bitmap> bitmaps;
-
+long giatoida,giatoithieu;
     protected QuanAnModel(Parcel in) {
         giaohang = in.readByte() != 0;
         giodongcua = in.readString();
@@ -40,6 +40,8 @@ public class QuanAnModel implements Parcelable {
         hinhanhquanan = in.createStringArrayList();
         //bitmaps = in.createTypedArrayList(Bitmap.CREATOR);
         luotthich = in.readLong();
+        giatoida = in.readLong();
+        giatoithieu = in.readLong();
         chiNhanhQuanAnList = new ArrayList<ChiNhanhQuanAn>();
         in.readTypedList(chiNhanhQuanAnList, ChiNhanhQuanAn.CREATOR);
 
@@ -75,6 +77,21 @@ public class QuanAnModel implements Parcelable {
         this.dataRoot = dataRoot;
     }
 
+    public long getGiatoida() {
+        return giatoida;
+    }
+
+    public void setGiatoida(long giatoida) {
+        this.giatoida = giatoida;
+    }
+
+    public long getGiatoithieu() {
+        return giatoithieu;
+    }
+
+    public void setGiatoithieu(long giatoithieu) {
+        this.giatoithieu = giatoithieu;
+    }
 
     public List<ChiNhanhQuanAn> getChiNhanhQuanAnList() {
         return chiNhanhQuanAnList;
@@ -272,6 +289,8 @@ public void LayDanhSachQuanAn(DataSnapshot dataSnapshot,final OdauInterfaces oda
         dest.writeStringList(hinhanhquanan);
         //dest.writeTypedList(bitmaps);
         dest.writeLong(luotthich);
+        dest.writeLong(giatoida);
+        dest.writeLong(giatoithieu);
         dest.writeTypedList(chiNhanhQuanAnList);
         dest.writeTypedList(binhLuanModelList);
     }

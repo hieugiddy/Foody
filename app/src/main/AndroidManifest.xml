@@ -44,7 +44,9 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.SlashScreenActivity"></activity>
+        <activity android:name=".View.SlashScreenActivity">
+
+        </activity>
         <activity android:name=".View.DangNhap"></activity>
         <activity android:name=".View.DangKy"></activity>
         <activity android:name=".View.QuenMk"></activity>
