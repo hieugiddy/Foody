@@ -21,7 +21,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuanAnModel {
+public class QuanAnModel implements Comparable<QuanAnModel>{
     boolean giaohang;
     String  giodongcua,giomocua,tenquanan,videogioithieu,maquanan;
     List<String> tienich;
@@ -154,7 +154,7 @@ public class QuanAnModel {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             dataRoot=dataSnapshot;
-            LayDanhSachQuanAn(dataSnapshot,odauInterface,viTriHienTai,soItemTiepTheo,soItemDaCo);
+            LayDanhSachQuanAn(dataRoot,odauInterface,viTriHienTai,soItemTiepTheo,soItemDaCo);
         }
 
         @Override
@@ -168,6 +168,24 @@ public class QuanAnModel {
            nodeRoot.addListenerForSingleValueEvent(valueEventListener);
 }
 
+    public void getDanhSachQuanAn(final OdauInterfaces odauInterface, final Location viTriHienTai) {
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                dataRoot=dataSnapshot;
+                LayDanhSachQuanAn(dataRoot,odauInterface,viTriHienTai,30,0);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+       nodeRoot.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+
+
 public void LayDanhSachQuanAn(DataSnapshot dataSnapshot,final OdauInterfaces odauInterface, final Location viTriHienTai,int soItemTiepTheo,int soItemDaCo){
     int k=0;
        //lấy danh sách quán ăn
@@ -180,6 +198,11 @@ public void LayDanhSachQuanAn(DataSnapshot dataSnapshot,final OdauInterfaces oda
             continue;
         }
         k++;
+        loadQuanAn(i, dataSnapshot, odauInterface, viTriHienTai);
+    }
+}
+
+    public void loadQuanAn(DataSnapshot i,DataSnapshot dataSnapshot,final OdauInterfaces odauInterface, final Location viTriHienTai) {
         final QuanAnModel quanAnModel=i.getValue(QuanAnModel.class);
         quanAnModel.setMaquanan(i.getKey());
         // lấy danh sách hình ảnh của một quán ăn theo mã
@@ -236,7 +259,23 @@ public void LayDanhSachQuanAn(DataSnapshot dataSnapshot,final OdauInterfaces oda
             }
         });
     }
-}
 
 
+    @Override
+    public int compareTo(QuanAnModel o) {
+        ChiNhanhQuanAn chiNhanhQuanAn1=o.getChiNhanhQuanAnList().get(0);
+        for(ChiNhanhQuanAn i: o.getChiNhanhQuanAnList()){
+            if(chiNhanhQuanAn1.getKhoangCach() > i.getKhoangCach()){
+                chiNhanhQuanAn1=i;
+            }
+        }
+
+        ChiNhanhQuanAn chiNhanhQuanAn2=this.getChiNhanhQuanAnList().get(0);
+        for(ChiNhanhQuanAn i: o.getChiNhanhQuanAnList()){
+            if(chiNhanhQuanAn2.getKhoangCach() > i.getKhoangCach()){
+                chiNhanhQuanAn2=i;
+            }
+        }
+        return (int) (chiNhanhQuanAn2.getKhoangCach()-chiNhanhQuanAn1.getKhoangCach());
+    }
 }

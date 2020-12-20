@@ -2,7 +2,6 @@ package com.app.foody.Adapters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.Model.ChiNhanhQuanAn;
-import com.app.foody.View.ChiTietQuanAn;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -27,10 +25,10 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
+public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder> {
     List<QuanAnModel>quanAnModelList;
     int resource;
-    public OdauAdapter(List<QuanAnModel>quanAnModelList, int resource){
+    public QuanAnAdapter(List<QuanAnModel>quanAnModelList, int resource){
               this.quanAnModelList=quanAnModelList;
             this.resource=resource;
     }
@@ -66,7 +64,7 @@ public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
         }  }
     @NonNull
     @Override
-    public OdauAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public QuanAnAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(resource,parent,false);
         ViewHolder viewHolder=new ViewHolder(view);
 
@@ -74,7 +72,7 @@ public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final OdauAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final QuanAnAdapter.ViewHolder holder, int position) {
         QuanAnModel quanAnModel=quanAnModelList.get(position);
         holder.txtTenQuanAnOdau.setText(quanAnModel.getTenquanan());
             if (quanAnModel.isGiaohang()){
@@ -119,9 +117,9 @@ public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
 
         if(quanAnModel.getChiNhanhQuanAnList().size()>0){
             ChiNhanhQuanAn chiNhanhQuanAn=quanAnModel.getChiNhanhQuanAnList().get(0);
-            for(ChiNhanhQuanAn i: quanAnModel.getChiNhanhQuanAnList()){
-                if(chiNhanhQuanAn.getKhoangCach() > i.getKhoangCach()){
-                    chiNhanhQuanAn=i;
+                    for(ChiNhanhQuanAn i: quanAnModel.getChiNhanhQuanAnList()){
+                        if(chiNhanhQuanAn.getKhoangCach() > i.getKhoangCach()){
+                            chiNhanhQuanAn=i;
                 }
             }
             holder.txtDiaChi.setText(chiNhanhQuanAn.getDiaChi());

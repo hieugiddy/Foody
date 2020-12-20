@@ -1,10 +1,7 @@
 package com.app.foody.Controller;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -12,14 +9,11 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.foody.Adapters.OdauAdapter;
+import com.app.foody.Adapters.QuanAnAdapter;
 import com.app.foody.Controller.Interfaces.OdauInterfaces;
 import com.app.foody.Model.Product;
 import com.app.foody.Model.QuanAnModel;
 import com.app.foody.R;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +21,7 @@ import java.util.List;
 public class OdauController {
     QuanAnModel quanAnModel;
     Context context;
-    OdauAdapter adapterRecyclerOdau;
+    QuanAnAdapter adapterRecyclerOdau;
     int soItemTiepTheo=0,limit=3;
     public OdauController(Context context) {
         this.context=context;
@@ -38,7 +32,7 @@ public class OdauController {
          final List<QuanAnModel> quanAnModelList=new ArrayList<>();
          RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(context);
          recyclerOdau.setLayoutManager(layoutManager);
-         adapterRecyclerOdau=new OdauAdapter(quanAnModelList, R.layout.custom_layout_recyclerview_odau);
+         adapterRecyclerOdau=new QuanAnAdapter(quanAnModelList, R.layout.custom_layout_recyclerview_odau);
          recyclerOdau.setAdapter(adapterRecyclerOdau);
          final OdauInterfaces odauInterface=new OdauInterfaces() {
              @Override
@@ -47,7 +41,6 @@ public class OdauController {
                  adapterRecyclerOdau.notifyDataSetChanged();
                  progressBar.setVisibility(View.GONE);
              }
-
              @Override
              public void getDanhSachQuanAnModel(Product quanAnModel) {
 
