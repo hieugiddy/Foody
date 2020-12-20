@@ -59,6 +59,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".View.BinhLuanActivity">
+
+        </activity>
         <activity android:name=".View.Slide"></activity>
         <activity android:name=".View.EditProfile"></activity>
         <activity android:name=".Fragments.MapFragment"></activity>

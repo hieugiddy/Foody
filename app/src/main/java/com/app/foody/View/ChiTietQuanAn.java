@@ -203,6 +203,7 @@ public class ChiTietQuanAn extends AppCompatActivity {
                     Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
                     ImageView imagetienich =new ImageView(ChiTietQuanAn.this);
                     LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(50,50);
+                    layoutParams.setMargins(10,10,10,10);
                     imagetienich.setScaleType(ImageView.ScaleType.FIT_XY);
                     imagetienich.setPadding(10,5,10,5);
                     imagetienich.setImageBitmap(bitmap);

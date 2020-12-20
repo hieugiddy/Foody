@@ -191,6 +191,7 @@ long giatoida,giatoithieu;
         return luotthich;
     }
 
+
     public void setLuotthich(long luotthich) {
         this.luotthich = luotthich;
     }
@@ -203,6 +204,7 @@ long giatoida,giatoithieu;
             dataRoot=dataSnapshot;
             LayDanhSachQuanAn(dataSnapshot,odauInterface,viTriHienTai,soItemTiepTheo,soItemDaCo);
         }
+
 
         @Override
         public void onCancelled(@NonNull DatabaseError error) {

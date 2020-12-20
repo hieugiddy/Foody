@@ -372,7 +372,7 @@
                                 android:drawablePadding="8dp"
                                 android:paddingTop="3dp"
                                 android:paddingBottom="3dp"
-                                android:text="20,000 đồng - 22,000 đồng"
+                                android:text="20,000 đồng - 23,000 đồng"
                                 android:textColor="#000000" />
                         </LinearLayout>
 
