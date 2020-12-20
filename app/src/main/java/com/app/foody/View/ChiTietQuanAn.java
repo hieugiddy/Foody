@@ -1,12 +1,15 @@
 package com.app.foody.View;
 
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -41,18 +44,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ChiTietQuanAn extends AppCompatActivity {
+public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickListener {
     ListView lv;
+
     DuocDatNhieuAdapter adapter;
     ArrayList<DuocDatNhieuItem> arr_bean;
     ImageView chitiet_back, imgHinhAnhQuan;
-    TextView tvTenQuanAn, tvThoiGianHoatDong, tvTrangThaiHoatDong, tvDiaChiQuanAn, tvTongSoHinhAnh,
+    TextView tvTenQuanAn, tvThoiGianHoatDong, tvTrangThaiHoatDong, tvDiaChiQuanAn, tvTongSoHinhAnh,tv_binhluan1,
             tvTongSoCheckIn, tvTongSoBinhLuan, tvTongSoLuuLai, tvTenquananToolBar, tvTongSoBinhLuan1,txtgioihangia;
     QuanAnModel quanAnModel;
     Toolbar toolbarODau;
     RecyclerView rcvListBinhLuan;
     AdapterBinhLuan binhLuanAdapter;
     LinearLayout khungTienIch;
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +82,10 @@ public class ChiTietQuanAn extends AppCompatActivity {
         tvTongSoLuuLai = findViewById(R.id.tv_tongso_luulai);
         tvTongSoBinhLuan1 = findViewById(R.id.tv_tongso_binhluan1);
 
+        tv_binhluan1= findViewById(R.id.tv_binhluan);
+        tv_binhluan1.setOnClickListener(this);
+
+
         rcvListBinhLuan = findViewById(R.id.rcv_list_binhluan_chitietquanan);
 
         //Log.d("kiemtra", quanAnModel.getTenquanan());
@@ -85,6 +94,7 @@ public class ChiTietQuanAn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+
             }
         });
         //Listview
@@ -220,5 +230,17 @@ public class ChiTietQuanAn extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id=v.getId();
+        switch (id){
+            case R.id.tv_binhluan:
+                Intent ibinhluan=new Intent(this,BinhLuanActivity.class);
+                ibinhluan.putExtra("tenquan",quanAnModel.getTenquanan());
+                ibinhluan.putExtra("diachi",quanAnModel.getChiNhanhQuanAnList().get(0).getDiaChi());
+                startActivity(ibinhluan);
+        }
     }
 }
