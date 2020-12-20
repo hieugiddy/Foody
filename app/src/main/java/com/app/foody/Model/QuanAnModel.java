@@ -29,6 +29,7 @@ public class QuanAnModel implements Parcelable {
     List<ChiNhanhQuanAn> chiNhanhQuanAnList;
     List<Bitmap> bitmaps;
 long giatoida,giatoithieu;
+
     protected QuanAnModel(Parcel in) {
         giaohang = in.readByte() != 0;
         giodongcua = in.readString();

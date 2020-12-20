@@ -4,14 +4,17 @@ package com.app.foody.View;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toolbar;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,7 +48,7 @@ public class ChiTietQuanAn extends AppCompatActivity {
     ListView lv;
     DuocDatNhieuAdapter adapter;
     ArrayList<DuocDatNhieuItem> arr_bean;
-    ImageView chitiet_back, imgHinhAnhQuan;
+    ImageView chitiet_back, imgHinhAnhQuan,imgPlayTrailer;
     TextView tvTenQuanAn, tvThoiGianHoatDong, tvTrangThaiHoatDong, tvDiaChiQuanAn, tvTongSoHinhAnh,
             tvTongSoCheckIn, tvTongSoBinhLuan, tvTongSoLuuLai, tvTenquananToolBar, tvTongSoBinhLuan1,txtgioihangia;
     QuanAnModel quanAnModel;
@@ -53,12 +56,14 @@ public class ChiTietQuanAn extends AppCompatActivity {
     RecyclerView rcvListBinhLuan;
     AdapterBinhLuan binhLuanAdapter;
     LinearLayout khungTienIch;
+    VideoView videoView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chitietquanan);
 
         quanAnModel = getIntent().getParcelableExtra("quanan");
+        Log.d("kiemtra",quanAnModel.getVideogioithieu() + " ");
 
         chitiet_back=findViewById(R.id.chitiet_back);
         imgHinhAnhQuan = findViewById(R.id.img_hinh_anh_quan);
@@ -68,16 +73,19 @@ public class ChiTietQuanAn extends AppCompatActivity {
         tvTrangThaiHoatDong = findViewById(R.id.tv_trang_thai_hoatdong);
         tvDiaChiQuanAn = findViewById(R.id.tv_dia_chi_quan);
         txtgioihangia = findViewById(R.id.gioihangia);
-
         khungTienIch = findViewById(R.id.khungtienich);
-
         tvTongSoHinhAnh = findViewById(R.id.tv_tongso_hinhanh);
         tvTongSoBinhLuan = findViewById(R.id.tv_tongso_binhluan);
         tvTongSoCheckIn = findViewById(R.id.tv_tongso_checkin);
         tvTongSoLuuLai = findViewById(R.id.tv_tongso_luulai);
         tvTongSoBinhLuan1 = findViewById(R.id.tv_tongso_binhluan1);
-
         rcvListBinhLuan = findViewById(R.id.rcv_list_binhluan_chitietquanan);
+        videoView = (VideoView) findViewById(R.id.videoTrailer);
+        imgPlayTrailer = (ImageView) findViewById(R.id.imgPlayTrailer);
+
+
+
+
 
         //Log.d("kiemtra", quanAnModel.getTenquanan());
 
@@ -177,6 +185,37 @@ public class ChiTietQuanAn extends AppCompatActivity {
                 imgHinhAnhQuan.setImageBitmap(bitmap);
             }
         });
+
+        //Load videoView
+        if(quanAnModel.getVideogioithieu() != null){
+            imgPlayTrailer.setVisibility(View.VISIBLE);
+            videoView.setVisibility(View.VISIBLE);
+            imgHinhAnhQuan.setVisibility(View.GONE);
+            StorageReference storageVideo = FirebaseStorage.getInstance().getReference().child("video").child(quanAnModel.getVideogioithieu());
+            storageVideo.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    videoView.setVideoURI(uri);
+                    videoView.seekTo(1);
+                }
+            });
+            imgPlayTrailer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    videoView.start();
+                    MediaController mediaController = new MediaController(ChiTietQuanAn.this);
+                    videoView.setMediaController(mediaController);
+                    imgPlayTrailer.setVisibility(View.GONE);
+                }
+            });
+
+        }else{
+            videoView.setVisibility(View.GONE);
+            imgPlayTrailer.setVisibility(View.GONE);
+            imgHinhAnhQuan.setVisibility(View.VISIBLE);
+        }
+
+
 
         //Load danh sách bình luận
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
