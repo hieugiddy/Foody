@@ -4,11 +4,9 @@ import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.app.foody.Controller.Interfaces.OdauInterfaces;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +25,10 @@ public class QuanAnModel implements Parcelable {
     List<BinhLuanModel> binhLuanModelList;
     List<ChiNhanhQuanAn> chiNhanhQuanAnList;
     List<Bitmap> bitmaps;
-long giatoida,giatoithieu;
+    List<ThucDonModel> thucDonModels;
+
+
+    long giatoida,giatoithieu;
 
     protected QuanAnModel(Parcel in) {
         giaohang = in.readByte() != 0;
@@ -61,6 +61,14 @@ long giatoida,giatoithieu;
             return new QuanAnModel[size];
         }
     };
+
+    public List<ThucDonModel> getThucDonModels() {
+        return thucDonModels;
+    }
+
+    public void setThucDonModels(List<ThucDonModel> thucDonModels) {
+        this.thucDonModels = thucDonModels;
+    }
 
     public List<Bitmap> getBitmaps() {
         return bitmaps;

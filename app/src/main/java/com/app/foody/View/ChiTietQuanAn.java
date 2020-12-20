@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.Adapters.AdapterBinhLuan;
 import com.app.foody.Adapters.DuocDatNhieuAdapter;
+import com.app.foody.Controller.ThucDonController;
 import com.app.foody.Model.DuocDatNhieuItem;
 import com.app.foody.Model.QuanAnModel;
 import com.app.foody.Model.TienIchModel;
@@ -57,13 +58,14 @@ public class ChiTietQuanAn extends AppCompatActivity {
     AdapterBinhLuan binhLuanAdapter;
     LinearLayout khungTienIch;
     VideoView videoView;
+    ThucDonController thucDonController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chitietquanan);
 
         quanAnModel = getIntent().getParcelableExtra("quanan");
-        Log.d("kiemtra",quanAnModel.getVideogioithieu() + " ");
+//        Log.d("kiemtra",quanAnModel.getVideogioithieu() + " ");
 
         chitiet_back=findViewById(R.id.chitiet_back);
         imgHinhAnhQuan = findViewById(R.id.img_hinh_anh_quan);
@@ -84,8 +86,9 @@ public class ChiTietQuanAn extends AppCompatActivity {
         imgPlayTrailer = (ImageView) findViewById(R.id.imgPlayTrailer);
 
 
+        thucDonController = new ThucDonController();
 
-
+        HienThiCHiTietQuanAn();
 
         //Log.d("kiemtra", quanAnModel.getTenquanan());
 
@@ -126,9 +129,9 @@ public class ChiTietQuanAn extends AppCompatActivity {
                 });*/
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+
+    protected void HienThiCHiTietQuanAn() {
+
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
@@ -186,7 +189,7 @@ public class ChiTietQuanAn extends AppCompatActivity {
             }
         });
 
-        //Load videoView
+        //Load Video Trailer
         if(quanAnModel.getVideogioithieu() != null){
             imgPlayTrailer.setVisibility(View.VISIBLE);
             videoView.setVisibility(View.VISIBLE);
@@ -224,6 +227,11 @@ public class ChiTietQuanAn extends AppCompatActivity {
         binhLuanAdapter = new AdapterBinhLuan(this, R.layout.custom_layout_binhluan, quanAnModel.getBinhLuanModelList());
         rcvListBinhLuan.setAdapter(binhLuanAdapter);
         binhLuanAdapter.notifyDataSetChanged();
+
+
+        //Pham Tien Long
+        thucDonController.getDanhSachThucDonQuanAnTheoMa(quanAnModel.getMaquanan());
+
     }
 
 
