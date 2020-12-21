@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -112,18 +113,18 @@ public class ChiTietQuanAn extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         String giohientai = dateFormat.format(calendar.getTime());
         String giomocua = quanAnModel.getGiomocua();
-        String giodongcua = quanAnModel.getGiomocua();
+        String giodongcua = quanAnModel.getGiodongcua();
         //Log.d("kiemtra", giohientai + "");
-        //giohientai.split("\\s");
 
-
+        Resources res = getResources();
         try {
             Date datehientai = dateFormat.parse(giohientai);
             Date dategiomocua = dateFormat.parse(giomocua);
             Date dategiodongcua = dateFormat.parse(giodongcua);
 
-            Resources res = getResources();
-            if (datehientai.after(dategiomocua) && datehientai.before(dategiodongcua)){
+            //Log.d("kiemtra", datehientai.after(dategiomocua)  +"");
+            if (datehientai.after(dategiomocua) && datehientai.before(dategiodongcua) ){
+
                 tvTrangThaiHoatDong.setText("Đang mở cửa");
                 tvTrangThaiHoatDong.setTextColor(res.getColor(R.color.green));
             }else{
