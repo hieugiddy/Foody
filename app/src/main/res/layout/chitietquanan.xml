@@ -418,6 +418,9 @@
 
                     </LinearLayout>
 
+
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -452,6 +455,8 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+
 
                 <LinearLayout
                     android:id="@+id/layout3"
@@ -517,13 +522,14 @@
 
                 </LinearLayout>
 
-                <ListView
-                    android:id="@+id/list_dn"
-                    android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:layout_below="@+id/layout3"
-                    android:nestedScrollingEnabled="true"
-                    android:scrollbars="vertical" />
+<!--                <ListView-->
+<!--                    android:id="@+id/list_dn"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="500dp"-->
+<!--                    android:layout_below="@+id/layout3"-->
+<!--                    android:nestedScrollingEnabled="true"-->
+<!--                    android:scrollbars="vertical" />-->
+                <include layout="@layout/layout_thucdon_chitiet"/>
 
                 <LinearLayout
                     android:id="@+id/binhluan"
@@ -778,6 +784,7 @@
 
         </androidx.core.widget.NestedScrollView>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -849,6 +856,7 @@
                 android:paddingBottom="8dp"
                 android:text="Chia sẻ" />
         </LinearLayout>
+
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

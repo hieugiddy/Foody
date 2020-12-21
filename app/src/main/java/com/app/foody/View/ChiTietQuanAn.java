@@ -54,7 +54,7 @@ public class ChiTietQuanAn extends AppCompatActivity {
             tvTongSoCheckIn, tvTongSoBinhLuan, tvTongSoLuuLai, tvTenquananToolBar, tvTongSoBinhLuan1,txtgioihangia;
     QuanAnModel quanAnModel;
     Toolbar toolbarODau;
-    RecyclerView rcvListBinhLuan;
+    RecyclerView rcvListBinhLuan,recyclerThucDon;
     AdapterBinhLuan binhLuanAdapter;
     LinearLayout khungTienIch;
     VideoView videoView;
@@ -84,6 +84,7 @@ public class ChiTietQuanAn extends AppCompatActivity {
         rcvListBinhLuan = findViewById(R.id.rcv_list_binhluan_chitietquanan);
         videoView = (VideoView) findViewById(R.id.videoTrailer);
         imgPlayTrailer = (ImageView) findViewById(R.id.imgPlayTrailer);
+        recyclerThucDon = (RecyclerView) findViewById(R.id.recyclerThucDon);
 
 
         thucDonController = new ThucDonController();
@@ -92,41 +93,23 @@ public class ChiTietQuanAn extends AppCompatActivity {
 
         //Log.d("kiemtra", quanAnModel.getTenquanan());
 
-        chitiet_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        //Listview
-        lv = (ListView) findViewById(R.id.list_dn);
-        arr_bean=new ArrayList<DuocDatNhieuItem>();
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        adapter=new DuocDatNhieuAdapter(arr_bean,this);
-        lv.setAdapter(adapter);
-
-        //slide banner
-        /*final ImageSlider imageSlider = findViewById(R.id.slide_anhquanan); // init imageSlider
-        final List<SlideModel> imageList = new ArrayList<>(); // Create image list
-        FirebaseDatabase.getInstance().getReference().child("slide")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot data:dataSnapshot.getChildren())
-                            imageList.add(new SlideModel(data.child("url").getValue().toString(), ScaleTypes.CENTER_CROP));
-                        imageSlider.setImageList(imageList,ScaleTypes.CENTER_CROP);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });*/
+//        chitiet_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+//        lv = (ListView) findViewById(R.id.list_dn);
+//        arr_bean=new ArrayList<DuocDatNhieuItem>();
+//        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
+//        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
+//        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
+//        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
+//        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
+//        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
+//        adapter=new DuocDatNhieuAdapter(arr_bean,this);
+//        lv.setAdapter(adapter);
+//
     }
 
 
@@ -230,7 +213,7 @@ public class ChiTietQuanAn extends AppCompatActivity {
 
 
         //Pham Tien Long
-        thucDonController.getDanhSachThucDonQuanAnTheoMa(quanAnModel.getMaquanan());
+        thucDonController.getDanhSachThucDonQuanAnTheoMa(this,quanAnModel.getMaquanan(),recyclerThucDon);
 
     }
 
