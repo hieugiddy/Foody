@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -24,9 +27,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.foody.Adapters.AdapterChonhinhBinhluan;
 import com.app.foody.Model.ChonhinhBinhluanModel;
 import com.app.foody.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ActivityChonHinhBinhLuan extends AppCompatActivity implements View.OnClickListener {
     List<ChonhinhBinhluanModel> listduongdan;
