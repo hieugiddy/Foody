@@ -48,7 +48,7 @@ public class OdauFragment extends Fragment {
         Location viTriHienTai=new Location("");
         viTriHienTai.setLatitude(latitude);
         viTriHienTai.setLongitude(longitude);
-         odauController=new OdauController(getContext());
-         odauController.getDanhSachQuanAnController(nestedScrollViewOdau,recyclerOdau,progressBarOdau,viTriHienTai);
+        odauController=new OdauController(getContext());
+        odauController.getDanhSachQuanAnController(nestedScrollViewOdau,recyclerOdau,progressBarOdau,viTriHienTai);
     }
 }

@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_odau"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_above="@+id/view_pager"
@@ -19,7 +21,7 @@
             android:src="@drawable/ic_back" />
 
         <TextView
-            android:id="@+id/tenquanan"
+            android:id="@+id/tv_ten_quanan_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -29,7 +31,7 @@
             android:text="Ritaki - Khoai Lang Mật - Khai Trí"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
 
         <ImageView
             android:id="@+id/option_chitiet"
@@ -76,23 +78,37 @@
                         android:background="#FFFFFF"
                         android:orientation="vertical"
                         android:paddingBottom="5dp">
-
-                        <com.denzcoskun.imageslider.ImageSlider
-                            android:id="@+id/slide_anhquanan"
+                        <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="240dp"
-                            android:layout_gravity="center"
-                            android:padding="0dp"
-                            android:scaleType="fitXY"
-                            app:iss_auto_cycle="true"
-                            app:iss_corner_radius="15"
-                            app:iss_delay="0"
-                            app:iss_error_image="@drawable/error"
-                            app:iss_period="3000"
-                            app:iss_placeholder="@drawable/loading_anh" />
+                            android:layout_height="240dp">
+                            <ImageView
+                                android:id="@+id/img_hinh_anh_quan"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:padding="0dp"
+                                android:scaleType="fitCenter"
+                                />
+                            <VideoView
+                                android:id="@+id/videoTrailer"
+                                android:layout_gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:visibility="gone">
+                            </VideoView>
+
+                            <ImageView
+                                android:id="@+id/imgPlayTrailer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@android:drawable/ic_media_play"
+                                android:layout_gravity="center"
+                                android:visibility="gone"/>
+
+                        </FrameLayout>
 
                         <TextView
-                            android:id="@+id/textView2"
+                            android:id="@+id/tv_ten_quanan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -154,11 +170,11 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView45"
+                                android:id="@+id/tv_tongso_hinhanh"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="63"
+                                android:text="0"
                                 android:textColor="#000000"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -181,11 +197,11 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView54"
+                                android:id="@+id/tv_tongso_binhluan"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="24"
+                                android:text="0"
                                 android:textColor="#000000"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -208,11 +224,11 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView51"
+                                android:id="@+id/tv_tongso_checkin"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="61"
+                                android:text="0"
                                 android:textColor="#000000"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -235,11 +251,11 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/tv_tongso_luulai"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="1.2k"
+                                android:text="0"
                                 android:textColor="#000000"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -278,21 +294,21 @@
                         android:paddingBottom="10dp">
 
                         <TextView
-                            android:id="@+id/textView8"
+                            android:id="@+id/tv_trang_thai_hoatdong"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="OPENING"
+                            android:text="Trạng Thái"
                             android:textColor="#4CAF50"
                             android:textColorLink="#000000"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView7"
+                            android:id="@+id/tv_thoigian_hoat_dong"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/textView8"
+                            android:layout_below="@+id/tv_trang_thai_hoatdong"
                             android:layout_marginLeft="10dp"
                             android:text="09:00 - 21:00"
                             android:textColor="#000000"
@@ -335,7 +351,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView15"
+                                android:id="@+id/tv_dia_chi_quan"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_location_dark"
@@ -368,14 +384,14 @@
                                 android:textColor="#000000" />
 
                             <TextView
-                                android:id="@+id/textView13"
+                                android:id="@+id/gioihangia"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_money"
                                 android:drawablePadding="8dp"
                                 android:paddingTop="3dp"
                                 android:paddingBottom="3dp"
-                                android:text="20,000 đồng - 22,000 đồng"
+                                android:text="20,000 đồng - 23,000 đồng"
                                 android:textColor="#000000" />
                         </LinearLayout>
 
@@ -402,6 +418,9 @@
 
                     </LinearLayout>
 
+
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -411,33 +430,20 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp">
 
-                        <TextView
-                            android:id="@+id/textView10"
+                        <LinearLayout
+                            android:id="@+id/khungtienich"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:drawableLeft="@drawable/wifi"
-                            android:drawablePadding="10dp"
-                            android:text="Add Wifi"
-                            android:textColor="#000000" />
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingLeft="10dp"
+                            android:orientation="horizontal" />
 
-                        <TextView
-                            android:id="@+id/textView11"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:drawableRight="@drawable/arrow_dark_remove2"
-                            android:drawablePadding="10dp"
-                            android:text="Create password"
-                            android:textAlignment="textEnd"
-                            android:textColor="#000000" />
 
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/textView924"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="1dp"
@@ -449,6 +455,8 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+
 
                 <LinearLayout
                     android:id="@+id/layout3"
@@ -514,13 +522,14 @@
 
                 </LinearLayout>
 
-                <ListView
-                    android:id="@+id/list_dn"
-                    android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:layout_below="@+id/layout3"
-                    android:nestedScrollingEnabled="true"
-                    android:scrollbars="vertical" />
+<!--                <ListView-->
+<!--                    android:id="@+id/list_dn"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="500dp"-->
+<!--                    android:layout_below="@+id/layout3"-->
+<!--                    android:nestedScrollingEnabled="true"-->
+<!--                    android:scrollbars="vertical" />-->
+                <include layout="@layout/layout_thucdon_chitiet"/>
 
                 <LinearLayout
                     android:id="@+id/binhluan"
@@ -536,7 +545,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView26"
+                            android:id="@+id/tv_tongso_binhluan1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -765,161 +774,10 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/containerBinhLuan1"
+                    <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:background="#FFFFFF"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/cicleImageUser1"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:src="@drawable/facebook" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/txtTieuDeBinhLuan1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Minh Hạ"
-                                android:textColor="#000000"
-                                android:textSize="18dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txtNoiDungBinhLuan1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Khoai lang rất ngon, sẽ ủng hộ thêm"
-                                android:textColor="#000000" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txtchamdiembinhluan2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="20dp"
-                            android:text="9.7"
-                            android:textColor="#000000" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/containerBinhLuan2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:background="#FFFFFF"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/cicleImageUser2"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:src="@drawable/facebook" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/txtTieuDeBinhLuan2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Minh Hiếu"
-                                android:textColor="#000000"
-                                android:textSize="18dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txtNoiDungBinhLuan2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Tạm được"
-                                android:textColor="#000000" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txtchamdiembinhluan2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="20dp"
-                            android:text="8.0"
-                            android:textColor="#000000" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/containerBinhLuan3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:background="#FFFFFF"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/cicleImageUser3"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center_horizontal"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:src="@drawable/facebook" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/txtTieuDeBinhLuan3"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Văn Thắng"
-                                android:textColor="#000000"
-                                android:textSize="18dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txtNoiDungBinhLuan3"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Ăn cũng được phết nhở"
-                                android:textColor="#000000" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txtchamdiembinhluan3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="20dp"
-                            android:text="9.0"
-                            android:textColor="#000000" />
-                    </LinearLayout>
+                        android:id="@+id/rcv_list_binhluan_chitietquanan"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -934,7 +792,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/taianh"
+                android:id="@+id/tv_taianh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center|center_vertical"
@@ -947,7 +805,7 @@
                 android:text="Tải ảnh" />
 
             <TextView
-                android:id="@+id/checkin"
+                android:id="@+id/tv_checkin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center|center_horizontal|center_vertical"
@@ -960,7 +818,7 @@
                 android:text="Check-in" />
 
             <TextView
-                android:id="@+id/bl"
+                android:id="@+id/tv_binhluan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center|center_horizontal|center_vertical"
@@ -973,7 +831,7 @@
                 android:text="Bình luận" />
 
             <TextView
-                android:id="@+id/save"
+                android:id="@+id/tv_save"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center|center_horizontal|center_vertical"
@@ -986,7 +844,7 @@
                 android:text="Save" />
 
             <TextView
-                android:id="@+id/chiase"
+                android:id="@+id/tv_chiase"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center|center_horizontal|center_vertical"
@@ -998,6 +856,7 @@
                 android:paddingBottom="8dp"
                 android:text="Chia sẻ" />
         </LinearLayout>
+
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

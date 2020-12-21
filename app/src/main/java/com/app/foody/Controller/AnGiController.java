@@ -33,7 +33,7 @@ public class AnGiController {
         final List<QuanAnModel> quanAnModelList=new ArrayList<>();
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(context);
         recyclerOdau.setLayoutManager(layoutManager);
-        adapterRecyclerAngi=new QuanAnAdapter(quanAnModelList, R.layout.custom_layout_recyclerview_odau);
+        adapterRecyclerAngi=new QuanAnAdapter(context,quanAnModelList, R.layout.custom_layout_recyclerview_odau);
         recyclerOdau.setAdapter(adapterRecyclerAngi);
         final OdauInterfaces odauInterface=new OdauInterfaces() {
             @Override

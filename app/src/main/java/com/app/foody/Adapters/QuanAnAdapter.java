@@ -1,5 +1,7 @@
 package com.app.foody.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.Model.ChiNhanhQuanAn;
+import com.app.foody.View.ChiTietQuanAn;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -28,9 +31,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder> {
     List<QuanAnModel>quanAnModelList;
     int resource;
-    public QuanAnAdapter(List<QuanAnModel>quanAnModelList, int resource){
-              this.quanAnModelList=quanAnModelList;
-            this.resource=resource;
+    Context context;
+    public QuanAnAdapter(Context context,List<QuanAnModel>quanAnModelList, int resource){
+        this.quanAnModelList=quanAnModelList;
+        this.resource=resource;
+        this.context = context;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenQuanAnOdau,txtTieuDeBinhLuan,txtTieuDeBinhLuan2,txtNoiDungBinhLuan,
@@ -40,6 +45,7 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder
         ImageView imageViewHinhQuanAnOdau;
         CircleImageView cicleImageUser,cicleImageUser2;
         LinearLayout containerBinhLuan2,containerBinhLuan;
+        View viewItemQuanAnODau;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +67,7 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder
             txtDiemTrungBinhQuanAn=itemView.findViewById(R.id.txtDiemTrungBinhQuanAn);
             txtDiaChi=itemView.findViewById(R.id.txtDiaChi);
             txtKhoangCach=itemView.findViewById(R.id.txtKhoangCach);
+            viewItemQuanAnODau = itemView.findViewById(R.id.view_item_odau);
         }  }
     @NonNull
     @Override
@@ -73,14 +80,22 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final QuanAnAdapter.ViewHolder holder, int position) {
-        QuanAnModel quanAnModel=quanAnModelList.get(position);
+        final QuanAnModel quanAnModel=quanAnModelList.get(position);
         holder.txtTenQuanAnOdau.setText(quanAnModel.getTenquanan());
-            if (quanAnModel.isGiaohang()){
-                holder.btnDatMonOdau.setVisibility(View.VISIBLE);
+        if (quanAnModel.isGiaohang()){
+            holder.btnDatMonOdau.setVisibility(View.VISIBLE);
+        }
+        if (quanAnModel.getHinhanhquanan().size()>0){
+            holder.imageViewHinhQuanAnOdau.setImageBitmap(quanAnModel.getBitmaps().get(0));
+        }
+        holder.viewItemQuanAnODau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ChiTietQuanAn.class);
+                i.putExtra("quanan", quanAnModel);
+                context.startActivity(i);
             }
-            if (quanAnModel.getHinhanhquanan().size()>0){
-                holder.imageViewHinhQuanAnOdau.setImageBitmap(quanAnModel.getBitmaps().get(0));
-            }
+        });
         //lấy danh sách bình luận của quán ăn
         if (quanAnModel.getBinhLuanModelList().size()>0){
             BinhLuanModel binhLuanModel=quanAnModel.getBinhLuanModelList().get(0);
@@ -117,9 +132,9 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder
 
         if(quanAnModel.getChiNhanhQuanAnList().size()>0){
             ChiNhanhQuanAn chiNhanhQuanAn=quanAnModel.getChiNhanhQuanAnList().get(0);
-                    for(ChiNhanhQuanAn i: quanAnModel.getChiNhanhQuanAnList()){
-                        if(chiNhanhQuanAn.getKhoangCach() > i.getKhoangCach()){
-                            chiNhanhQuanAn=i;
+            for(ChiNhanhQuanAn i: quanAnModel.getChiNhanhQuanAnList()){
+                if(chiNhanhQuanAn.getKhoangCach() > i.getKhoangCach()){
+                    chiNhanhQuanAn=i;
                 }
             }
             holder.txtDiaChi.setText(chiNhanhQuanAn.getDiaChi());

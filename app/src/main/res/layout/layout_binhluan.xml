@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorRed"
+
+        >
+        <ImageView
+            android:id="@+id/chitiet_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back" />
+        <TextView
+            android:id="@+id/vietbt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Viết Bình Luận"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/DangBinhLuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp"
+            android:padding="5dp"
+            android:text="Đăng"
+            android:textColor="#F6EDED" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ECEBEB"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txttenquan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gogi House"
+            android:textSize="15dp"
+            android:textColor="#000"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/txtdiachi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="323 Trần Hưng Đạo"
+            android:textColor="#000"/>
+    </LinearLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="#fff"
+       android:orientation="vertical">
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Tiêu Đề ( Không bắt buộc )"
+           android:textSize="12dp"
+           android:textColorHint="#000"
+           android:textColor="#000"
+           />
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="2dp"
+           android:background="#C9D0F8"/>
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:hint="Viết trên 100 từ, đúng chính tả, ngôn từ văn hóa, không spam, để được điểm thưởng"
+           android:textSize="12dp"
+            android:layout_weight="1"
+           android:textColorHint="#000"
+           android:textColor="#000"
+           android:gravity="top"/>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/recyclerview_chonhinh"
+          />
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="#ECEBEB">
+        <ImageView
+            android:id="@+id/imagechonhinh"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/camera"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/imhg"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ako"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+   </LinearLayout>
+
+</LinearLayout>

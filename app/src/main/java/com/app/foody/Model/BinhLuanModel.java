@@ -1,13 +1,39 @@
 package com.app.foody.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class BinhLuanModel {
+public class BinhLuanModel implements Parcelable {
     Double chamdiem;
     long luotthich;
     ThanhVienModel thanhVienModel;
     String noidung,tieude,mauser;
     List<String> hinhanhBinhLuanlist;
+
+    protected BinhLuanModel(Parcel in) {
+        chamdiem = in.readDouble();
+        luotthich = in.readLong();
+        noidung = in.readString();
+        tieude = in.readString();
+        mauser = in.readString();
+        hinhanhBinhLuanlist = in.createStringArrayList();
+        mabinhluan = in.readString();
+        thanhVienModel = in.readParcelable(ThanhVienModel.class.getClassLoader());
+    }
+
+    public static final Creator<BinhLuanModel> CREATOR = new Creator<BinhLuanModel>() {
+        @Override
+        public BinhLuanModel createFromParcel(Parcel in) {
+            return new BinhLuanModel(in);
+        }
+
+        @Override
+        public BinhLuanModel[] newArray(int size) {
+            return new BinhLuanModel[size];
+        }
+    };
 
     public List<String> getHinhanhBinhLuanlist() {
         return hinhanhBinhLuanlist;
@@ -81,5 +107,22 @@ public class BinhLuanModel {
 
     public void setTieude(String tieude) {
         this.tieude = tieude;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(chamdiem);
+        dest.writeLong(luotthich);
+        dest.writeString(noidung);
+        dest.writeString(tieude);
+        dest.writeString(mauser);
+        dest.writeStringList(hinhanhBinhLuanlist);
+        dest.writeString(mabinhluan);
+        dest.writeParcelable(thanhVienModel, flags);
     }
 }

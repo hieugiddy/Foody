@@ -1,5 +1,7 @@
 package com.app.foody.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -11,7 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ThanhVienModel {
+public class ThanhVienModel implements Parcelable {
 
     String hoten,hinhanh,mathanhvien,gioitinh,ngaysinh,sodt;
       private   DatabaseReference dataNodeThanhVien;
@@ -19,6 +21,28 @@ public class ThanhVienModel {
       public ThanhVienModel(){
         dataNodeThanhVien= FirebaseDatabase.getInstance().getReference().child("thanhviens");
     }
+
+    protected ThanhVienModel(Parcel in) {
+        hoten = in.readString();
+        hinhanh = in.readString();
+        mathanhvien = in.readString();
+        gioitinh = in.readString();
+        ngaysinh = in.readString();
+        sodt = in.readString();
+    }
+
+    public static final Creator<ThanhVienModel> CREATOR = new Creator<ThanhVienModel>() {
+        @Override
+        public ThanhVienModel createFromParcel(Parcel in) {
+            return new ThanhVienModel(in);
+        }
+
+        @Override
+        public ThanhVienModel[] newArray(int size) {
+            return new ThanhVienModel[size];
+        }
+    };
+
     public String getMathanhvien() {
         return mathanhvien;
     }
@@ -85,5 +109,20 @@ public class ThanhVienModel {
         };
         dataNodeThanhVien.child(uid).addListenerForSingleValueEvent(valueEventListener);
 
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(hoten);
+        dest.writeString(hinhanh);
+        dest.writeString(mathanhvien);
+        dest.writeString(gioitinh);
+        dest.writeString(ngaysinh);
+        dest.writeString(sodt);
     }
 }
