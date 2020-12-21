@@ -58,12 +58,14 @@
             android:layout_weight="1"/>
     </RadioGroup>
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollViewAngi"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -199,15 +201,20 @@
                     android:textSize="12sp"
                     app:backgroundTint="#FFFFFF"
                     app:cornerRadius="10dp" />
+
             </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progressBarAngi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerAngi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-    <FrameLayout
-        android:id="@+id/khungchuafragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-    </FrameLayout>
 </LinearLayout>
