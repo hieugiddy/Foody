@@ -1,5 +1,6 @@
 package com.app.foody.Adapters;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.Model.ChiNhanhQuanAn;
+import com.app.foody.View.ChiTietQuanAn;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -81,6 +83,14 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder
         if (quanAnModel.getHinhanhquanan().size()>0){
             holder.imageViewHinhQuanAnOdau.setImageBitmap(quanAnModel.getBitmaps().get(0));
         }
+        holder.viewItemQuanAnODau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ChiTietQuanAn.class);
+                i.putExtra("quanan", quanAnModel);
+                context.startActivity(i);
+            }
+        });
         //lấy danh sách bình luận của quán ăn
         if (quanAnModel.getBinhLuanModelList().size()>0){
             BinhLuanModel binhLuanModel=quanAnModel.getBinhLuanModelList().get(0);
