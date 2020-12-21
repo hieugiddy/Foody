@@ -32,9 +32,10 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder
     List<QuanAnModel>quanAnModelList;
     int resource;
     Context context;
-    public QuanAnAdapter(List<QuanAnModel>quanAnModelList, int resource){
+    public QuanAnAdapter(Context context,List<QuanAnModel>quanAnModelList, int resource){
         this.quanAnModelList=quanAnModelList;
         this.resource=resource;
+        this.context = context;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenQuanAnOdau,txtTieuDeBinhLuan,txtTieuDeBinhLuan2,txtNoiDungBinhLuan,
