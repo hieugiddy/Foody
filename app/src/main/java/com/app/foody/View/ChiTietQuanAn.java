@@ -98,7 +98,7 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
             }
         });
         //Listview
-        lv = (ListView) findViewById(R.id.list_dn);
+      /*  lv = (ListView) findViewById(R.id.list_dn);
         arr_bean=new ArrayList<DuocDatNhieuItem>();
         arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
         arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
@@ -108,7 +108,7 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
         arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
         adapter=new DuocDatNhieuAdapter(arr_bean,this);
         lv.setAdapter(adapter);
-
+*/
         //slide banner
         /*final ImageSlider imageSlider = findViewById(R.id.slide_anhquanan); // init imageSlider
         final List<SlideModel> imageList = new ArrayList<>(); // Create image list
