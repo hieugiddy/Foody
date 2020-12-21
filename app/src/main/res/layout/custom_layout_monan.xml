@@ -3,12 +3,46 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
+
     <TextView
         android:id="@+id/txtTenMonAn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black">
+        android:textColor="@color/black"
+        android:layout_weight="1">
     </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/imgGiamSoLuong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_remove1x"
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/txtSoLuong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="0">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/imgTangSoLuong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add1x">
+        </ImageView>
+
+    </LinearLayout>
+
 
 
 </LinearLayout>
