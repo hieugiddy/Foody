@@ -1,10 +1,7 @@
 package com.app.foody.Adapters;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.Model.ChiNhanhQuanAn;
-import com.app.foody.View.ChiTietQuanAn;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -29,15 +25,12 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
+public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder> {
     List<QuanAnModel>quanAnModelList;
     int resource;
-    Context context;
-
-    public OdauAdapter(Context context, List<QuanAnModel>quanAnModelList, int resource){
-              this.quanAnModelList=quanAnModelList;
-            this.resource=resource;
-            this.context = context;
+    public QuanAnAdapter(List<QuanAnModel>quanAnModelList, int resource){
+        this.quanAnModelList=quanAnModelList;
+        this.resource=resource;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenQuanAnOdau,txtTieuDeBinhLuan,txtTieuDeBinhLuan2,txtNoiDungBinhLuan,
@@ -47,7 +40,6 @@ public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
         ImageView imageViewHinhQuanAnOdau;
         CircleImageView cicleImageUser,cicleImageUser2;
         LinearLayout containerBinhLuan2,containerBinhLuan;
-        View viewItemQuanAnODau;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,12 +61,10 @@ public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
             txtDiemTrungBinhQuanAn=itemView.findViewById(R.id.txtDiemTrungBinhQuanAn);
             txtDiaChi=itemView.findViewById(R.id.txtDiaChi);
             txtKhoangCach=itemView.findViewById(R.id.txtKhoangCach);
-            viewItemQuanAnODau = itemView.findViewById(R.id.view_item_odau);
-        }
-    }
+        }  }
     @NonNull
     @Override
-    public OdauAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public QuanAnAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(resource,parent,false);
         ViewHolder viewHolder=new ViewHolder(view);
 
@@ -82,24 +72,15 @@ public class OdauAdapter extends RecyclerView.Adapter<OdauAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final OdauAdapter.ViewHolder holder, int position) {
-        final QuanAnModel quanAnModel=quanAnModelList.get(position);
+    public void onBindViewHolder(@NonNull final QuanAnAdapter.ViewHolder holder, int position) {
+        QuanAnModel quanAnModel=quanAnModelList.get(position);
         holder.txtTenQuanAnOdau.setText(quanAnModel.getTenquanan());
-            if (quanAnModel.isGiaohang()){
-                holder.btnDatMonOdau.setVisibility(View.VISIBLE);
-            }
-            if (quanAnModel.getHinhanhquanan().size()>0){
-                holder.imageViewHinhQuanAnOdau.setImageBitmap(quanAnModel.getBitmaps().get(0));
-            }
-
-        holder.viewItemQuanAnODau.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context, ChiTietQuanAn.class);
-                i.putExtra("quanan", quanAnModel);
-                context.startActivity(i);
-            }
-        });
+        if (quanAnModel.isGiaohang()){
+            holder.btnDatMonOdau.setVisibility(View.VISIBLE);
+        }
+        if (quanAnModel.getHinhanhquanan().size()>0){
+            holder.imageViewHinhQuanAnOdau.setImageBitmap(quanAnModel.getBitmaps().get(0));
+        }
         //lấy danh sách bình luận của quán ăn
         if (quanAnModel.getBinhLuanModelList().size()>0){
             BinhLuanModel binhLuanModel=quanAnModel.getBinhLuanModelList().get(0);
