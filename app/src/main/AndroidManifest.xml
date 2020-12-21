@@ -45,7 +45,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.SlashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".View.DangNhap"></activity>
         <activity android:name=".View.DangKy"></activity>
@@ -56,11 +60,7 @@
 
         </activity>
         <activity android:name=".View.BinhLuanActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".View.ActivityChonHinhBinhLuan">
 
