@@ -1,5 +1,6 @@
 package com.app.foody.Adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,6 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder> {
     List<QuanAnModel>quanAnModelList;
     int resource;
+    Context context;
     public QuanAnAdapter(List<QuanAnModel>quanAnModelList, int resource){
         this.quanAnModelList=quanAnModelList;
         this.resource=resource;
@@ -77,7 +79,7 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final QuanAnAdapter.ViewHolder holder, int position) {
-        QuanAnModel quanAnModel=quanAnModelList.get(position);
+        final QuanAnModel quanAnModel=quanAnModelList.get(position);
         holder.txtTenQuanAnOdau.setText(quanAnModel.getTenquanan());
         if (quanAnModel.isGiaohang()){
             holder.btnDatMonOdau.setVisibility(View.VISIBLE);
