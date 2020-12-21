@@ -3,21 +3,29 @@ package com.app.foody.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.foody.Adapters.AdapterHienThiHinhBinhLuan;
 import com.app.foody.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BinhLuanActivity extends AppCompatActivity implements View.OnClickListener {
         TextView txtdiachi,txttenquan;
         ImageView imagechonhinh;
     ImageView chitiet_back;
-final int Request_chonhinh=15;
+    RecyclerView recyclerViewbinhluan,recyclerview_chonhinh;
+    AdapterHienThiHinhBinhLuan adapterHienThiBinhLuan;
+    final int Request_chonhinh=11;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +36,10 @@ final int Request_chonhinh=15;
         txttenquan=findViewById(R.id.txttenquan);
         chitiet_back=findViewById(R.id.chitiet_back);
         imagechonhinh=findViewById(R.id.imagechonhinh);
+        recyclerViewbinhluan=findViewById(R.id.recylerviewchonbinhluan);
+        recyclerview_chonhinh=findViewById(R.id.recyclerview_chonhinh);
+     RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
+        recyclerview_chonhinh.setLayoutManager(layoutManager);
         txttenquan.setText(tenquan);
         txtdiachi.setText(diachi);
         imagechonhinh.setOnClickListener(this);
@@ -56,6 +68,15 @@ final int Request_chonhinh=15;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==Request_chonhinh) {
+            if (resultCode == RESULT_OK){
 
+                List<String> listHinhDuocChon=data.getStringArrayListExtra("listHinhDuocChon");
+            adapterHienThiBinhLuan = new AdapterHienThiHinhBinhLuan(this, R.layout.custom_layouthienthibinhluan_duocchon, listHinhDuocChon);
+
+          recyclerview_chonhinh.setAdapter(adapterHienThiBinhLuan);
+           adapterHienThiBinhLuan.notifyDataSetChanged();
+        }
+        }
     }
 }

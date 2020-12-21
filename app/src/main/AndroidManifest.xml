@@ -53,14 +53,14 @@
         <activity android:name=".View.ChiTietQuanAn"></activity>
         <activity android:name=".View.ChangePassword" />
         <activity android:name=".View.TrangChu">
+
+        </activity>
+        <activity android:name=".View.BinhLuanActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".View.BinhLuanActivity">
-
         </activity>
         <activity android:name=".View.ActivityChonHinhBinhLuan">
 
