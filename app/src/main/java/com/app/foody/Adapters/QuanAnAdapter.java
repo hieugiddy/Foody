@@ -42,6 +42,7 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder
         ImageView imageViewHinhQuanAnOdau;
         CircleImageView cicleImageUser,cicleImageUser2;
         LinearLayout containerBinhLuan2,containerBinhLuan;
+        View viewItemQuanAnODau;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +64,7 @@ public class QuanAnAdapter extends RecyclerView.Adapter<QuanAnAdapter.ViewHolder
             txtDiemTrungBinhQuanAn=itemView.findViewById(R.id.txtDiemTrungBinhQuanAn);
             txtDiaChi=itemView.findViewById(R.id.txtDiaChi);
             txtKhoangCach=itemView.findViewById(R.id.txtKhoangCach);
+            viewItemQuanAnODau = itemView.findViewById(R.id.view_item_odau);
         }  }
     @NonNull
     @Override
