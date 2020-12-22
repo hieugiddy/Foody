@@ -37,7 +37,7 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
     Double latitude,longitude;
     SharedPreferences sharedPreferences;
     QuanAnModel quanAnModel;
-    TextView txtDiaChiQuanAn,txtgioihangia,txtTenQuan;
+    TextView txtDiaChiQuanAn,txtTenQuan;
     ImageView imgQuanAn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,6 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         txtDiaChiQuanAn=findViewById(R.id.txtDiaChiQuanAn);
-        txtgioihangia=findViewById(R.id.txtgioihangia);
         imgQuanAn=findViewById(R.id.imgQuanAn);
         txtTenQuan=findViewById(R.id.txtTenQuan);
         map=googleMap;
@@ -75,7 +74,6 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
         });
 
         txtTenQuan.setText(quanAnModel.getTenquanan());
-        txtgioihangia.setText(quanAnModel.getGiatoithieu()+"đ - "+quanAnModel.getGiatoida()+"đ");
         latitude=chiNhanhQuanAn.getLatitude();
         longitude=chiNhanhQuanAn.getLongitude();
         LatLng current=new LatLng(latitude,longitude);
