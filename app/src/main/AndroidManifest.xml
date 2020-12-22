@@ -68,6 +68,7 @@
 
         </activity>
         <activity android:name=".View.Slide"></activity>
+        <activity android:name=".View.Themquanan"></activity>
         <activity android:name=".View.EditProfile"></activity>
         <activity android:name=".Fragments.MapFragment"></activity>
         <activity android:name=".View.HienThiChiTietBinhLuanActivity"></activity>

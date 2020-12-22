@@ -50,6 +50,7 @@
         </RadioGroup>
 
         <ImageView
+            android:id="@+id/themQuanAN"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="right"

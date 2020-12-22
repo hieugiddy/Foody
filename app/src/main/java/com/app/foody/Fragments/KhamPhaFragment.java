@@ -1,5 +1,6 @@
 package com.app.foody.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +16,14 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.app.foody.Adapters.AdapterViewPagerKhamPha;
 import com.app.foody.R;
+import com.app.foody.View.Themquanan;
 
 public class KhamPhaFragment extends Fragment implements ViewPager.OnPageChangeListener, RadioGroup.OnCheckedChangeListener{
 
     ViewPager viewPagerTrangChu;
     RadioButton rbOdau, rbAnGi;
     RadioGroup groupOdauAngi;
-    ImageView btt_back;
+    ImageView btt_back,themQuanAN;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class KhamPhaFragment extends Fragment implements ViewPager.OnPageChangeL
         rbOdau = (RadioButton) v.findViewById(R.id.rb_odau);
         rbAnGi = (RadioButton) v.findViewById(R.id.rb_angi);
         btt_back=(ImageView) v.findViewById(R.id.btt_back);
+        themQuanAN=v.findViewById(R.id.themQuanAN);
         groupOdauAngi = (RadioGroup) v.findViewById(R.id.group_odau_angi);
 
         btt_back.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +45,13 @@ public class KhamPhaFragment extends Fragment implements ViewPager.OnPageChangeL
         viewPagerTrangChu.setAdapter(adapterViewPagerKhamPha);
         viewPagerTrangChu.addOnPageChangeListener(this);
         groupOdauAngi.setOnCheckedChangeListener(this);
+        themQuanAN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), Themquanan.class);
+                startActivity(intent);
+            }
+        });
         return v;
     }
     @Override

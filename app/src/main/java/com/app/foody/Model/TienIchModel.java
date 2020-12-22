@@ -1,7 +1,18 @@
 package com.app.foody.Model;
 
 public class TienIchModel {
-    String hinhtienich,tentienich;
+    String hinhtienich;
+    String tentienich;
+
+    public String getMatienich() {
+        return matienich;
+    }
+
+    public void setMatienich(String matienich) {
+        this.matienich = matienich;
+    }
+
+    String matienich;
 
    public TienIchModel(){
 
