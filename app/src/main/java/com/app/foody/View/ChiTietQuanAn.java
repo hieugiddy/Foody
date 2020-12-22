@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,8 +14,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toolbar;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.Adapters.AdapterBinhLuan;
 import com.app.foody.Adapters.DuocDatNhieuAdapter;
+import com.app.foody.Controller.ThucDonController;
 import com.app.foody.Model.DuocDatNhieuItem;
 import com.app.foody.Model.QuanAnModel;
 import com.app.foody.Model.TienIchModel;
@@ -46,17 +50,18 @@ import java.util.Date;
 
 public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickListener {
     ListView lv;
-
     DuocDatNhieuAdapter adapter;
     ArrayList<DuocDatNhieuItem> arr_bean;
-    ImageView chitiet_back, imgHinhAnhQuan;
+    ImageView chitiet_back, imgHinhAnhQuan,imgPlayTrailer;
     TextView tvTenQuanAn, tvThoiGianHoatDong, tvTrangThaiHoatDong, tvDiaChiQuanAn, tvTongSoHinhAnh,tv_binhluan1,
             tvTongSoCheckIn, tvTongSoBinhLuan, tvTongSoLuuLai, tvTenquananToolBar, tvTongSoBinhLuan1,txtgioihangia;
     QuanAnModel quanAnModel;
     Toolbar toolbarODau;
-    RecyclerView rcvListBinhLuan;
+    RecyclerView rcvListBinhLuan,recyclerThucDon;
     AdapterBinhLuan binhLuanAdapter;
     LinearLayout khungTienIch;
+    VideoView videoView;
+    ThucDonController thucDonController;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +86,12 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
         tvTongSoCheckIn = findViewById(R.id.tv_tongso_checkin);
         tvTongSoLuuLai = findViewById(R.id.tv_tongso_luulai);
         tvTongSoBinhLuan1 = findViewById(R.id.tv_tongso_binhluan1);
+        videoView = (VideoView) findViewById(R.id.videoTrailer);
+        imgPlayTrailer = (ImageView) findViewById(R.id.imgPlayTrailer);
+        recyclerThucDon = (RecyclerView) findViewById(R.id.recyclerThucDon);
 
+
+        thucDonController = new ThucDonController();
         tv_binhluan1= findViewById(R.id.tv_binhluan);
         tv_binhluan1.setOnClickListener(this);
 
@@ -97,35 +107,6 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
 
             }
         });
-        //Listview
-      /*  lv = (ListView) findViewById(R.id.list_dn);
-        arr_bean=new ArrayList<DuocDatNhieuItem>();
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        arr_bean.add(new DuocDatNhieuItem(R.drawable.loading, "Gà sốt cay Hàn Quốc","Bán chạy nhất của quán","46,000đ"));
-        adapter=new DuocDatNhieuAdapter(arr_bean,this);
-        lv.setAdapter(adapter);
-*/
-        //slide banner
-        /*final ImageSlider imageSlider = findViewById(R.id.slide_anhquanan); // init imageSlider
-        final List<SlideModel> imageList = new ArrayList<>(); // Create image list
-        FirebaseDatabase.getInstance().getReference().child("slide")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot data:dataSnapshot.getChildren())
-                            imageList.add(new SlideModel(data.child("url").getValue().toString(), ScaleTypes.CENTER_CROP));
-                        imageSlider.setImageList(imageList,ScaleTypes.CENTER_CROP);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });*/
     }
 
     @Override
@@ -136,18 +117,18 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         String giohientai = dateFormat.format(calendar.getTime());
         String giomocua = quanAnModel.getGiomocua();
-        String giodongcua = quanAnModel.getGiomocua();
+        String giodongcua = quanAnModel.getGiodongcua();
         //Log.d("kiemtra", giohientai + "");
-        //giohientai.split("\\s");
 
-
+        Resources res = getResources();
         try {
             Date datehientai = dateFormat.parse(giohientai);
             Date dategiomocua = dateFormat.parse(giomocua);
             Date dategiodongcua = dateFormat.parse(giodongcua);
 
-            Resources res = getResources();
-            if (datehientai.after(dategiomocua) && datehientai.before(dategiodongcua)){
+            //Log.d("kiemtra", datehientai.after(dategiomocua)  +"");
+            if (datehientai.after(dategiomocua) && datehientai.before(dategiodongcua) ){
+
                 tvTrangThaiHoatDong.setText("Đang mở cửa");
                 tvTrangThaiHoatDong.setTextColor(res.getColor(R.color.green));
             }else{
@@ -187,7 +168,34 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
                 imgHinhAnhQuan.setImageBitmap(bitmap);
             }
         });
+        //Load Video Trailer
+        if(quanAnModel.getVideogioithieu() != null){
+            imgPlayTrailer.setVisibility(View.VISIBLE);
+            videoView.setVisibility(View.VISIBLE);
+            imgHinhAnhQuan.setVisibility(View.GONE);
+            StorageReference storageVideo = FirebaseStorage.getInstance().getReference().child("video").child(quanAnModel.getVideogioithieu());
+            storageVideo.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    videoView.setVideoURI(uri);
+                    videoView.seekTo(1);
+                }
+            });
+            imgPlayTrailer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    videoView.start();
+                    MediaController mediaController = new MediaController(ChiTietQuanAn.this);
+                    videoView.setMediaController(mediaController);
+                    imgPlayTrailer.setVisibility(View.GONE);
+                }
+            });
 
+        }else{
+            videoView.setVisibility(View.GONE);
+            imgPlayTrailer.setVisibility(View.GONE);
+            imgHinhAnhQuan.setVisibility(View.VISIBLE);
+        }
         //Load danh sách bình luận
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rcvListBinhLuan.setLayoutManager(layoutManager);
@@ -195,6 +203,7 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
         binhLuanAdapter = new AdapterBinhLuan(this, R.layout.custom_layout_binhluan, quanAnModel.getBinhLuanModelList());
         rcvListBinhLuan.setAdapter(binhLuanAdapter);
         binhLuanAdapter.notifyDataSetChanged();
+        thucDonController.getDanhSachThucDonQuanAnTheoMa(this,quanAnModel.getMaquanan(),recyclerThucDon);
     }
 
 
