@@ -247,6 +247,7 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
         switch (id){
             case R.id.tv_binhluan:
                 Intent ibinhluan=new Intent(this,BinhLuanActivity.class);
+                ibinhluan.putExtra("maquanan",quanAnModel.getMaquanan());
                 ibinhluan.putExtra("tenquan",quanAnModel.getTenquanan());
                 ibinhluan.putExtra("diachi",quanAnModel.getChiNhanhQuanAnList().get(0).getDiaChi());
                 startActivity(ibinhluan);
