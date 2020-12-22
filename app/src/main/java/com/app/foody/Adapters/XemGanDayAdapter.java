@@ -1,5 +1,7 @@
 package com.app.foody.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -12,8 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.Model.BinhLuanModel;
-import com.app.foody.Model.Product;
+import com.app.foody.Model.QuanAnModel;
 import com.app.foody.R;
+import com.app.foody.View.ChiTietQuanAn;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -21,23 +24,25 @@ import com.google.firebase.storage.StorageReference;
 import java.util.List;
 
 public class XemGanDayAdapter extends  RecyclerView.Adapter<XemGanDayAdapter.ViewHolder> {
-    List<Product>quanAnModelList;
+    List<QuanAnModel>quanAnModelList;
     int resource;
-    public XemGanDayAdapter(List<Product>quanAnModelList, int resource){
+    Context context;
+
+    public XemGanDayAdapter(Context context,List<QuanAnModel>quanAnModelList, int resource){
         this.quanAnModelList=quanAnModelList;
         this.resource=resource;
+        this.context=context;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView binhluan,tenquanan;
         ImageView txtimage;
-
+        View viewTrangChuClick;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtimage=itemView.findViewById(R.id.txtimage);
             tenquanan=itemView.findViewById(R.id.tenquanan);
             binhluan=itemView.findViewById(R.id.bl);
-
-
+            viewTrangChuClick=itemView.findViewById(R.id.viewTrangChuClick);
         }
     }
 
@@ -52,18 +57,10 @@ public class XemGanDayAdapter extends  RecyclerView.Adapter<XemGanDayAdapter.Vie
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        Product quanAnModel=quanAnModelList.get(position);
+        final QuanAnModel quanAnModel=quanAnModelList.get(position);
         holder.tenquanan.setText(quanAnModel.getTenquanan());
         if (quanAnModel.getHinhanhquanan().size()>0){
-            StorageReference storageHinhAnh  = FirebaseStorage.getInstance().getReference().child("hinhquanan").child(quanAnModel.getHinhanhquanan().get(0));
-            final long ONE_MEGABYTE=1024*1024;
-            storageHinhAnh.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                @Override
-                public void onSuccess(byte[] bytes) {
-            Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-            holder.txtimage.setImageBitmap(bitmap);
-                }
-            });
+            holder.txtimage.setImageBitmap(quanAnModel.getBitmaps().get(0));
         }
         if (quanAnModel.getBinhLuanModelList().size()>0) {
             BinhLuanModel binhLuanModel = quanAnModel.getBinhLuanModelList().get(1);
@@ -72,6 +69,14 @@ public class XemGanDayAdapter extends  RecyclerView.Adapter<XemGanDayAdapter.Vie
         } else {
             holder.binhluan.setText("Chưa có bình luận nào");
         }
+        holder.viewTrangChuClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ChiTietQuanAn.class);
+                i.putExtra("quanan", quanAnModel);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override

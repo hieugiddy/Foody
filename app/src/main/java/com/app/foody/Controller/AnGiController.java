@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.foody.Adapters.QuanAnAdapter;
 import com.app.foody.Controller.Interfaces.OdauInterfaces;
-import com.app.foody.Model.Product;
 import com.app.foody.Model.QuanAnModel;
 import com.app.foody.R;
 
@@ -45,10 +44,7 @@ public class AnGiController {
                 progressBar.setVisibility(View.GONE);
             }
 
-            @Override
-            public void getDanhSachQuanAnModel(Product quanAnModel) {
 
-            }
         };
 
         quanAnModel.getDanhSachQuanAn(odauInterface, viTriHienTai);
