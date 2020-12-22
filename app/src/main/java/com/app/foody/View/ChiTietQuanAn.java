@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.foody.Adapters.AdapterBinhLuan;
 import com.app.foody.Adapters.DuocDatNhieuAdapter;
 import com.app.foody.Controller.ThucDonController;
+import com.app.foody.Fragments.MapFragment;
 import com.app.foody.Model.DuocDatNhieuItem;
 import com.app.foody.Model.QuanAnModel;
 import com.app.foody.Model.TienIchModel;
@@ -62,6 +63,7 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
     LinearLayout khungTienIch;
     VideoView videoView;
     ThucDonController thucDonController;
+    View map;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
         tvTrangThaiHoatDong = findViewById(R.id.tv_trang_thai_hoatdong);
         tvDiaChiQuanAn = findViewById(R.id.tv_dia_chi_quan);
         txtgioihangia = findViewById(R.id.gioihangia);
+        map=findViewById(R.id.mapView);
 
         khungTienIch = findViewById(R.id.khungtienich);
 
@@ -105,6 +108,14 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
             public void onClick(View v) {
                 onBackPressed();
 
+            }
+        });
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ChiTietQuanAn.this, MapFragment.class);
+                i.putExtra("quanan", quanAnModel);
+                startActivity(i);
             }
         });
     }

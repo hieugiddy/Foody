@@ -1,53 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
     android:orientation="vertical">
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
         <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-<View
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F4F3F3"/>
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical">
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:padding="10dp"
-               android:id="@+id/txtDiaChiQuanAn"/>
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:id="@+id/txtgioihangia"
-               android:text="10.000-50.000"
-               android:textColor="#000"
-               android:padding="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:weightSum="10"
+            android:orientation="horizontal">
 
-       </LinearLayout>
+            <ImageView
+                android:id="@+id/imgQuanAn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="3"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center_vertical"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtTenQuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên quán"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDiaChiQuanAn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="địa chỉ"
+                    android:textColor="#1C1C1C"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtgioihangia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="10.000-50.000"
+                    android:textColor="#8F0808" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </FrameLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="5dp"
-        android:background="#304FFE"/>
+        android:background="#304FFE" />
+
     <LinearLayout
+        android:id="@+id/khungtienich"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/khungtienich"/>
+        android:orientation="horizontal" />
 </LinearLayout>
