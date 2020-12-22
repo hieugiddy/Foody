@@ -75,7 +75,7 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
         });
 
         txtTenQuan.setText(quanAnModel.getTenquanan());
-        txtgioihangia.setText(quanAnModel.getGiatoithieu()+"-"+quanAnModel.getGiatoida());
+        txtgioihangia.setText(quanAnModel.getGiatoithieu()+"đ - "+quanAnModel.getGiatoida()+"đ");
         latitude=chiNhanhQuanAn.getLatitude();
         longitude=chiNhanhQuanAn.getLongitude();
         LatLng current=new LatLng(latitude,longitude);
