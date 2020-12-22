@@ -52,11 +52,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.DangNhap">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".View.DangKy"></activity>
         <activity android:name=".View.QuenMk"></activity>
