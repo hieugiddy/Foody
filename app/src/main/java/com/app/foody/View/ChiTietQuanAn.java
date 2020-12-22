@@ -117,18 +117,18 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         String giohientai = dateFormat.format(calendar.getTime());
         String giomocua = quanAnModel.getGiomocua();
-        String giodongcua = quanAnModel.getGiomocua();
+        String giodongcua = quanAnModel.getGiodongcua();
         //Log.d("kiemtra", giohientai + "");
-        //giohientai.split("\\s");
 
-
+        Resources res = getResources();
         try {
             Date datehientai = dateFormat.parse(giohientai);
             Date dategiomocua = dateFormat.parse(giomocua);
             Date dategiodongcua = dateFormat.parse(giodongcua);
 
-            Resources res = getResources();
-            if (datehientai.after(dategiomocua) && datehientai.before(dategiodongcua)){
+            //Log.d("kiemtra", datehientai.after(dategiomocua)  +"");
+            if (datehientai.after(dategiomocua) && datehientai.before(dategiodongcua) ){
+
                 tvTrangThaiHoatDong.setText("Đang mở cửa");
                 tvTrangThaiHoatDong.setTextColor(res.getColor(R.color.green));
             }else{
@@ -247,6 +247,7 @@ public class ChiTietQuanAn extends AppCompatActivity implements View.OnClickList
         switch (id){
             case R.id.tv_binhluan:
                 Intent ibinhluan=new Intent(this,BinhLuanActivity.class);
+                ibinhluan.putExtra("maquanan",quanAnModel.getMaquanan());
                 ibinhluan.putExtra("tenquan",quanAnModel.getTenquanan());
                 ibinhluan.putExtra("diachi",quanAnModel.getChiNhanhQuanAnList().get(0).getDiaChi());
                 startActivity(ibinhluan);

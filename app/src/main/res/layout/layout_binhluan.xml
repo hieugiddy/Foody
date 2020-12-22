@@ -43,19 +43,22 @@
         android:layout_height="wrap_content"
         android:background="#ECEBEB"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/txttenquan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
             android:text="Gogi House"
-            android:textSize="15dp"
             android:textColor="#000"
-            android:textStyle="bold"/>
+            android:textSize="15dp"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/txtdiachi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="323 Trần Hưng Đạo"
+            android:paddingLeft="10dp"
             android:textColor="#000"/>
     </LinearLayout>
    <LinearLayout
@@ -64,24 +67,28 @@
        android:background="#fff"
        android:orientation="vertical">
        <EditText
+           android:id="@+id/edtieude"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:hint="Tiêu Đề ( Không bắt buộc )"
            android:textSize="12dp"
            android:textColorHint="#000"
            android:textColor="#000"
+           android:paddingLeft="20dp"
            />
        <View
            android:layout_width="match_parent"
            android:layout_height="2dp"
            android:background="#C9D0F8"/>
        <EditText
+           android:id="@+id/ednoidung"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:hint="Viết trên 100 từ, đúng chính tả, ngôn từ văn hóa, không spam, để được điểm thưởng"
            android:textSize="12dp"
             android:layout_weight="1"
            android:textColorHint="#000"
+           android:paddingLeft="10dp"
            android:textColor="#000"
            android:gravity="top"/>
 

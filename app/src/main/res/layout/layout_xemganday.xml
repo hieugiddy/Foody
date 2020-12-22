@@ -10,11 +10,11 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:id="@+id/progressBarOdau"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:padding="5dp"
-                android:id="@+id/recyclerxemganday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerxemganday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"></androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>
