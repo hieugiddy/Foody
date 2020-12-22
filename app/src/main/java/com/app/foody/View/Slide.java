@@ -72,7 +72,7 @@ public class Slide extends AppCompatActivity {
                 if(onboardingViewPager.getCurrentItem() +1 < onboardingAdapter.getItemCount()){
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
                 } else {
-                    startActivity(new Intent(getApplicationContext(), TrangChu.class));
+                    startActivity(new Intent(getApplicationContext(), DangNhap.class));
                     finish();
                 }
             }

@@ -55,7 +55,7 @@ public class SlashScreenActivity extends AppCompatActivity {
                         Intent intent = new Intent(SlashScreenActivity.this, Slide.class);
                         startActivity(intent);
                     } else {
-                        Intent intent = new Intent(SlashScreenActivity.this, TrangChu.class);
+                        Intent intent = new Intent(SlashScreenActivity.this, DangNhap.class);
                         startActivity(intent);
                     }
                     finish();
