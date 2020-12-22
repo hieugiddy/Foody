@@ -1,6 +1,7 @@
 package com.app.foody.View;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,6 +45,7 @@ public class DangNhap extends AppCompatActivity implements FirebaseAuth.AuthStat
     SignInButton signGoogle;
     TextView txtDangKy,txtQuenMK;
     EditText emailDN,matKhauDN;
+    SharedPreferences sharedPreferences;
     Button btDangNhap;
     private static final int RC_SIGN_IN = 007;
     LoginButton signFB;
@@ -53,6 +55,11 @@ public class DangNhap extends AppCompatActivity implements FirebaseAuth.AuthStat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dang_nhap);
         mAuth = FirebaseAuth.getInstance();
+
+        //
+        sharedPreferences=getSharedPreferences("luudangnhap",MODE_PRIVATE);
+
+        //
 
 
         txtDangKy=(TextView) findViewById(R.id.tv_DKMoi);
@@ -242,6 +249,11 @@ public class DangNhap extends AppCompatActivity implements FirebaseAuth.AuthStat
     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
         FirebaseUser currentUser =mAuth.getCurrentUser();
         if(currentUser!=null) {
+//
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putString("mauser",currentUser.getUid());
+            editor.commit();
+            //
             Toast.makeText(DangNhap.this, "Đã đăng nhập với " + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
             Intent iTrangChu=new Intent(DangNhap.this, TrangChu.class);
             startActivity(iTrangChu);

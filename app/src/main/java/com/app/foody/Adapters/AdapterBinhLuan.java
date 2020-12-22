@@ -28,14 +28,14 @@ public class AdapterBinhLuan extends RecyclerView.Adapter<AdapterBinhLuan.ViewHo
     Context context;
     int layout;
     List<BinhLuanModel> binhLuanModelList;
-    List<Bitmap> bitmapList;
+
 
     public AdapterBinhLuan(Context context, int layout, List<BinhLuanModel> binhLuanModelList){
         this.context = context;
         this.layout = layout;
         this.binhLuanModelList = binhLuanModelList;
 
-        bitmapList = new ArrayList<>();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,7 +67,7 @@ public class AdapterBinhLuan extends RecyclerView.Adapter<AdapterBinhLuan.ViewHo
         holder.tvNoiDungBL.setText(binhLuanModel.getNoidung());
         holder.tvChamDiemBL.setText(binhLuanModel.getChamdiem()+"");
         setAvataNguoiBinhLuan(holder.crcImgBinhLuan, binhLuanModel.getThanhVienModel().getHinhanh());
-
+       final List<Bitmap> bitmapList = new ArrayList<>();
         // truyền vào 1 list hình ảnh của 1 bình luận
         for (String linkhinh : binhLuanModel.getHinhanhBinhLuanlist()){
             StorageReference storageHinhuser= FirebaseStorage.getInstance().getReference().child("hinhanh").child(linkhinh);

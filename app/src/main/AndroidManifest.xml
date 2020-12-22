@@ -47,7 +47,13 @@
         <activity android:name=".View.SlashScreenActivity">
 
         </activity>
-        <activity android:name=".View.DangNhap"></activity>
+        <activity android:name=".View.DangNhap">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".View.DangKy"></activity>
         <activity android:name=".View.QuenMk"></activity>
         <activity android:name=".View.ChiTietQuanAn"></activity>
@@ -56,11 +62,7 @@
 
         </activity>
         <activity android:name=".View.BinhLuanActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".View.ActivityChonHinhBinhLuan">
 
