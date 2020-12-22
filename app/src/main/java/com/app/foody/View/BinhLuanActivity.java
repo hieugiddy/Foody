@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -91,8 +92,9 @@ public class BinhLuanActivity extends AppCompatActivity implements View.OnClickL
                 binhLuanModel.setChamdiem(0);
                 binhLuanModel.setLuotthich(0);
                 binhLuanModel.setMauser(mauser);
-
                 binhLuanController.ThemBinhluan(maquanan,binhLuanModel,listHinhDuocChon);
+                Toast.makeText(BinhLuanActivity.this,"Đã đăng bình luận",Toast.LENGTH_SHORT);
+                onBackPressed();
                 break;
 
         }

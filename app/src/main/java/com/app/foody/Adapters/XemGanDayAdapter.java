@@ -63,7 +63,7 @@ public class XemGanDayAdapter extends  RecyclerView.Adapter<XemGanDayAdapter.Vie
             holder.txtimage.setImageBitmap(quanAnModel.getBitmaps().get(0));
         }
         if (quanAnModel.getBinhLuanModelList().size()>0) {
-            BinhLuanModel binhLuanModel = quanAnModel.getBinhLuanModelList().get(1);
+            BinhLuanModel binhLuanModel = quanAnModel.getBinhLuanModelList().get(0);
             holder.binhluan.setText(binhLuanModel.getNoidung());
 
         } else {
